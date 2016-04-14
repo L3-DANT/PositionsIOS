@@ -96,7 +96,7 @@ class Login: UITableViewController {
     
     @IBAction func loginAction(sender: AnyObject) {
     
-        let url = "http://132.227.125.76:8080/Positions/utilisateur/inscription"
+        let url = "http://132.227.125.113:8080/Positions/utilisateur/inscription"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         
         let session = NSURLSession.sharedSession()
@@ -104,6 +104,10 @@ class Login: UITableViewController {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         let params = ["nom":txtUsername.text!, "prenom":txtPassword.text!] as Dictionary<String, String>
+        
+        print(txtUsername.text)
+        print(txtPassword.text)
+        
         do {
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
         } catch {
@@ -119,6 +123,7 @@ class Login: UITableViewController {
                 if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
                     let success = json["success"] as? Int
                     print("Success: \(success)")
+                    
                 } else {
                     let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
                     print("Error could not parse JSON: \(jsonStr)")
