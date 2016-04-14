@@ -124,7 +124,7 @@ class Login: UITableViewController {
     
     @IBAction func loginAction(sender: AnyObject) {
     
-        let url = "http://132.227.125.181:8080/Positions/utilisateur/inscription"
+        let url = "http://132.227.125.113:8080/Positions/utilisateur/inscription"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         
         let session = NSURLSession.sharedSession()
