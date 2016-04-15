@@ -21,14 +21,15 @@ class Localisation: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
     
     var locationManager: CLLocationManager!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager=CLLocationManager()
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
-        openMap.showsUserLocation = true
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest//précision pour la localisation
+        locationManager.requestAlwaysAuthorization()//demande l'autorisation de localisation
+        locationManager.startUpdatingLocation()//start
+        openMap.showsUserLocation = true//affiche mon point
         
     }
     
@@ -39,7 +40,6 @@ class Localisation: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
     
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
-        print("hellllooooo")
         let latitude = locationManager.location?.coordinate.latitude
         let longitude = locationManager.location?.coordinate.longitude
         print(latitude)
@@ -53,27 +53,12 @@ class Localisation: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         let region = MKCoordinateRegionMakeWithDistance(center, width, height)
         openMap.setRegion(region, animated: true)
         
+//        let date = NSDate()
+//        
+//        print(date)
     }
     
-   /* func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
-         print("mapView")
-        let latitude = userLocation.coordinate.latitude
-        let longitude = userLocation.coordinate.longitude
-        print(latitude)
-        print(longitude)
-        
-        let center = CLLocationCoordinate2D(latitude:latitude ,longitude:longitude)
-     
-        
-        let width = 1000.0
-        let height = 1000.0
-        let region = MKCoordinateRegionMakeWithDistance(center, width, height)
-        mapView.setRegion(region, animated: true)
-        
-        self.envoi(latitude,lo:longitude)
-        
-    }*/
-    
+
     
     func envoi(la:Double, lo:Double){
         
