@@ -131,7 +131,10 @@ class Login: UITableViewController {
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        let params = ["nom":txtUsername.text!, "prenom":txtPassword.text!,"pseudo":"Mp24qzasfdsqqdp", "motDePasse":"AZECODE"] as Dictionary<String, String>
+        let params = ["nom":txtUsername.text!, "prenom":txtPassword.text!] as Dictionary<String, String>
+        
+        print(txtUsername.text)
+        print(txtPassword.text)
         do {
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
         } catch {

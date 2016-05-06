@@ -8,11 +8,14 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var cll = CLLocationManager()
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -22,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         UINavigationBar.appearance().barTintColor = UIColor(red: 0/255, green: 146/255, blue: 69/255, alpha: 1.0)
         UINavigationBar.appearance().translucent = false
+        
+        cll.requestWhenInUseAuthorization()
         
         return true
     }

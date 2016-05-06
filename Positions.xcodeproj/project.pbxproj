@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8540A8871CB6E871004F521B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8540A8861CB6E871004F521B /* MapKit.framework */; };
 		D52410E01C9ABA2800DA1A75 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52410DF1C9ABA2800DA1A75 /* Login.swift */; };
 		D52410E31C9AE08E00DA1A75 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52410E21C9AE08E00DA1A75 /* Extension.swift */; };
 		D59636FA1CB66787008C3202 /* Utilisateur.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59636F91CB66787008C3202 /* Utilisateur.swift */; };
@@ -31,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8540A8861CB6E871004F521B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8540A8881CB6E89D004F521B /* Localisation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Localisation.swift; path = ../Localisation.swift; sourceTree = "<group>"; };
 		D52410DF1C9ABA2800DA1A75 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Login.swift; path = Login/Login.swift; sourceTree = "<group>"; };
 		D52410E21C9AE08E00DA1A75 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = Extensions/Extension.swift; sourceTree = "<group>"; };
 		D59636F91CB66787008C3202 /* Utilisateur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilisateur.swift; path = Login/Utilisateur.swift; sourceTree = "<group>"; };
@@ -53,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8540A8871CB6E871004F521B /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +92,7 @@
 		D64F659A1C99C0FC0029278E = {
 			isa = PBXGroup;
 			children = (
+				8540A8861CB6E871004F521B /* MapKit.framework */,
 				D64F65A51C99C0FC0029278E /* Positions */,
 				D64F65BE1C99C0FC0029278E /* PositionsTests */,
 				D64F65A41C99C0FC0029278E /* Products */,
@@ -106,6 +111,7 @@
 		D64F65A51C99C0FC0029278E /* Positions */ = {
 			isa = PBXGroup;
 			children = (
+				8540A8881CB6E89D004F521B /* Localisation.swift */,
 				D52410E11C9AE03700DA1A75 /* Extensions */,
 				D52410DE1C9AB99700DA1A75 /* Login */,
 				D64F65A81C99C0FC0029278E /* AppDelegate.swift */,
@@ -189,7 +195,7 @@
 			attributes = {
 				LastSwiftMigration = 0710;
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = m2sar;
 				TargetAttributes = {
 					D64F65A21C99C0FC0029278E = {
