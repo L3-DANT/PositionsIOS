@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		8540A8871CB6E871004F521B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8540A8861CB6E871004F521B /* MapKit.framework */; };
-		8540A8891CB6E89D004F521B /* Localisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8540A8881CB6E89D004F521B /* Localisation.swift */; };
 		D52410E01C9ABA2800DA1A75 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52410DF1C9ABA2800DA1A75 /* Login.swift */; };
 		D52410E31C9AE08E00DA1A75 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52410E21C9AE08E00DA1A75 /* Extension.swift */; };
+		D59636FA1CB66787008C3202 /* Utilisateur.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59636F91CB66787008C3202 /* Utilisateur.swift */; };
+		D59636FC1CB667B3008C3202 /* Localisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59636FB1CB667B3008C3202 /* Localisation.swift */; };
+		D59B16371CBE7D63004DD2CE /* Inscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59B16361CBE7D63004DD2CE /* Inscription.swift */; };
 		D64F65A91C99C0FC0029278E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64F65A81C99C0FC0029278E /* AppDelegate.swift */; };
 		D64F65AC1C99C0FC0029278E /* Positions.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D64F65AA1C99C0FC0029278E /* Positions.xcdatamodeld */; };
 		D64F65B11C99C0FC0029278E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D64F65AF1C99C0FC0029278E /* Main.storyboard */; };
@@ -34,6 +36,9 @@
 		8540A8881CB6E89D004F521B /* Localisation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Localisation.swift; path = ../Localisation.swift; sourceTree = "<group>"; };
 		D52410DF1C9ABA2800DA1A75 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Login.swift; path = Login/Login.swift; sourceTree = "<group>"; };
 		D52410E21C9AE08E00DA1A75 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = Extensions/Extension.swift; sourceTree = "<group>"; };
+		D59636F91CB66787008C3202 /* Utilisateur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilisateur.swift; path = Login/Utilisateur.swift; sourceTree = "<group>"; };
+		D59636FB1CB667B3008C3202 /* Localisation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localisation.swift; sourceTree = "<group>"; };
+		D59B16361CBE7D63004DD2CE /* Inscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Inscription.swift; path = Login/Inscription.swift; sourceTree = "<group>"; };
 		D64F65A31C99C0FC0029278E /* Positions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Positions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D64F65A71C99C0FC0029278E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D64F65A81C99C0FC0029278E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +74,9 @@
 			isa = PBXGroup;
 			children = (
 				D52410DF1C9ABA2800DA1A75 /* Login.swift */,
+				D59636F91CB66787008C3202 /* Utilisateur.swift */,
+				D59636FB1CB667B3008C3202 /* Localisation.swift */,
+				D59B16361CBE7D63004DD2CE /* Inscription.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -192,7 +200,7 @@
 				TargetAttributes = {
 					D64F65A21C99C0FC0029278E = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 6853K5CSB6;
+						DevelopmentTeam = TW536N94VJ;
 					};
 					D64F65BA1C99C0FC0029278E = {
 						CreatedOnToolsVersion = 6.4;
@@ -245,10 +253,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D52410E01C9ABA2800DA1A75 /* Login.swift in Sources */,
+				D59B16371CBE7D63004DD2CE /* Inscription.swift in Sources */,
 				D64F65AC1C99C0FC0029278E /* Positions.xcdatamodeld in Sources */,
-				8540A8891CB6E89D004F521B /* Localisation.swift in Sources */,
+				D59636FA1CB66787008C3202 /* Utilisateur.swift in Sources */,
 				D64F65A91C99C0FC0029278E /* AppDelegate.swift in Sources */,
 				D52410E31C9AE08E00DA1A75 /* Extension.swift in Sources */,
+				D59636FC1CB667B3008C3202 /* Localisation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,7 +392,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Positions/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "fr.upmc.sar.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = Lux.Positions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -396,7 +406,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Positions/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "fr.upmc.sar.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = Lux.Positions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
