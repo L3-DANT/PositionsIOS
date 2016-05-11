@@ -28,6 +28,7 @@ class Inscription: UIViewController {
     var MailString:String!
     var MotPasseString:String!
     var Motpasse2String:String!
+    var VerifString:String!
     
     
     
@@ -44,66 +45,16 @@ class Inscription: UIViewController {
         MailString = Mail.text!
         MotPasseString = MotPasse.text!
         Motpasse2String = MotPasse1.text!
-
-        if (self.VerifMotPass(MotPasse.text!, MotPasse1String: MotPasse1.text!)){
-            let url = "http://134.157.245.93:8080/Positions/utilisateur/inscription"
-            let request = NSMutableURLRequest(URL: NSURL(string: url)!)
-            
-            let session = NSURLSession.sharedSession()
-            request.HTTPMethod = "POST"
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-            let params = ["nom":" ", "prenom":" ","pseudo":Pseudo.text!, "motDePasse":MotPasse.text!,"mail":Mail.text!] as Dictionary<String, String>
-            do {
-                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
-            } catch {
-                print(error)
-            }
-            
-            let task = session.dataTaskWithRequest(request) { data, response, error in
-                guard data != nil else {
-                   // print("no data found: \(error)")
-                    return
-                }
-                do {
-                    if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
-                        //   let success = json["pseudo"] as? String
-                        // print("Success: \(success)")
-                        //print((json["localisation:date"] as? String))
-                       // print(json)
-                    self.Verif.text = ""
-                      
-                        
-                    } else {
-                        let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                        //print("Error could not parse JSON: \(jsonStr)")
-                        if (jsonStr == true){
-                           // print(jsonStr)
-                        }
-                        
-                        
-                    }
-                } catch let parseError {
-                    print(parseError)
-                    let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                    //print(jsonStr)
-                
-                    if((jsonStr ?? false) != nil){
-                       self.Verif.text = "Pseudo deja existant"
-                    }
-                    
-                    
-                    if (jsonStr == true){
-                      //  print("Connexion reussie !");
-                    }
-                }
-            }
-            task.resume()
-
+        
+        
+        if (VerifMotPass(MotPasseString, MotPasse1String: Motpasse2String)){
+            VerifString = self.Verif.text!
+            EnregistrementUtilisateur.enregistrement(MotPasseString,motPasse1: Motpasse2String,mail: MailString,pseudo: PseudoString, verif: VerifString)
         }
         
     }
-
+    
+    
     
     func VerifMotPass(MotPasseString:String, MotPasse1String:String) -> Bool {
         if(MotPasseString == MotPasse1String){

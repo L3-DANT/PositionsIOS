@@ -9,21 +9,22 @@
 import Foundation
 
 
-class Utilisateur: Localisation {
+class Utilisateur {
     
     let nom:String
     let prenom:String
     let motDePasse:String
     let pseudo:String
     let token:String
+    var local:Localisation
  
-    init(nom: String, prenom:String, motDePasse:String, pseudo:String, latitude:Float, longitude:Float, heure:String, date:String, token:String) {
+    init(nom: String, prenom:String, motDePasse:String, pseudo:String, token:String, localisation:Localisation) {
         self.nom = nom
         self.prenom = prenom
         self.motDePasse = motDePasse
         self.pseudo = pseudo
         self.token = token
-        super.init(longitude:longitude, latitude:latitude, heure:heure, date:date)
+        self.local = localisation
     }
     
     //func description () -> String {
@@ -36,10 +37,7 @@ class Utilisateur: Localisation {
         print("pseudo : " + self.pseudo)
         print("mots Passe : " + self.motDePasse)
         print("token: " + self.token)
-        print("Longitude : ",  super.longitude)
-        print("latitude : ",  super.latitude)
-        print("Last date : ",  super.date)
-        print("Last time : ",  super.heure)
+        
     }
     
     

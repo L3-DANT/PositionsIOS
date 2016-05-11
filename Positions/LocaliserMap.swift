@@ -24,8 +24,9 @@ import MapKit
 class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate {
     
 
-    
     @IBOutlet weak var openMap: MKMapView!
+    
+    //@IBOutlet weak var openMap: MKMapView!
     
     var locationManager: CLLocationManager!
     

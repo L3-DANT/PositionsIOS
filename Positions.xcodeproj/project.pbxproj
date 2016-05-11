@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		857C94951CE09BE700BC0101 /* LocaliserMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857C94941CE09BE700BC0101 /* LocaliserMap.swift */; };
+		85D259D81CE3322F000F2D45 /* EnregistrementUtilisateur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D259D71CE3322F000F2D45 /* EnregistrementUtilisateur.swift */; };
 		D52410E01C9ABA2800DA1A75 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52410DF1C9ABA2800DA1A75 /* Login.swift */; };
 		D59636FA1CB66787008C3202 /* Utilisateur.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59636F91CB66787008C3202 /* Utilisateur.swift */; };
 		D59636FC1CB667B3008C3202 /* Localisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59636FB1CB667B3008C3202 /* Localisation.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		857C94941CE09BE700BC0101 /* LocaliserMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaliserMap.swift; sourceTree = "<group>"; };
+		85D259D71CE3322F000F2D45 /* EnregistrementUtilisateur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnregistrementUtilisateur.swift; sourceTree = "<group>"; };
 		D52410DF1C9ABA2800DA1A75 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Login.swift; path = Login/Login.swift; sourceTree = "<group>"; };
 		D59636F91CB66787008C3202 /* Utilisateur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilisateur.swift; path = Login/Utilisateur.swift; sourceTree = "<group>"; };
 		D59636FB1CB667B3008C3202 /* Localisation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localisation.swift; sourceTree = "<group>"; };
@@ -66,15 +68,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D52410DE1C9AB99700DA1A75 /* Login */ = {
+		85D259D61CE331EA000F2D45 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				85D259D71CE3322F000F2D45 /* EnregistrementUtilisateur.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		85D259D91CE35C5F000F2D45 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				D59636F91CB66787008C3202 /* Utilisateur.swift */,
+				D59636FB1CB667B3008C3202 /* Localisation.swift */,
+			);
+			name = Class;
+			sourceTree = "<group>";
+		};
+		85D259DA1CE35CC0000F2D45 /* Fonctionnalites */ = {
 			isa = PBXGroup;
 			children = (
 				D52410DF1C9ABA2800DA1A75 /* Login.swift */,
-				D59636F91CB66787008C3202 /* Utilisateur.swift */,
-				D59636FB1CB667B3008C3202 /* Localisation.swift */,
 				D59B16361CBE7D63004DD2CE /* Inscription.swift */,
 			);
-			name = Login;
+			name = Fonctionnalites;
 			sourceTree = "<group>";
 		};
 		D64F659A1C99C0FC0029278E = {
@@ -98,7 +115,9 @@
 		D64F65A51C99C0FC0029278E /* Positions */ = {
 			isa = PBXGroup;
 			children = (
-				D52410DE1C9AB99700DA1A75 /* Login */,
+				85D259DA1CE35CC0000F2D45 /* Fonctionnalites */,
+				85D259D91CE35C5F000F2D45 /* Class */,
+				85D259D61CE331EA000F2D45 /* Extension */,
 				D64F65A81C99C0FC0029278E /* AppDelegate.swift */,
 				D64F65AF1C99C0FC0029278E /* Main.storyboard */,
 				D64F65B21C99C0FC0029278E /* Images.xcassets */,
@@ -239,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D52410E01C9ABA2800DA1A75 /* Login.swift in Sources */,
+				85D259D81CE3322F000F2D45 /* EnregistrementUtilisateur.swift in Sources */,
 				857C94951CE09BE700BC0101 /* LocaliserMap.swift in Sources */,
 				D59B16371CBE7D63004DD2CE /* Inscription.swift in Sources */,
 				D64F65AC1C99C0FC0029278E /* Positions.xcdatamodeld in Sources */,
