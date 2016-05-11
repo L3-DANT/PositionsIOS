@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		857C94951CE09BE700BC0101 /* LocaliserMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857C94941CE09BE700BC0101 /* LocaliserMap.swift */; };
 		D52410E01C9ABA2800DA1A75 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52410DF1C9ABA2800DA1A75 /* Login.swift */; };
-		D52410E31C9AE08E00DA1A75 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52410E21C9AE08E00DA1A75 /* Extension.swift */; };
 		D59636FA1CB66787008C3202 /* Utilisateur.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59636F91CB66787008C3202 /* Utilisateur.swift */; };
 		D59636FC1CB667B3008C3202 /* Localisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59636FB1CB667B3008C3202 /* Localisation.swift */; };
 		D59B16371CBE7D63004DD2CE /* Inscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59B16361CBE7D63004DD2CE /* Inscription.swift */; };
@@ -34,7 +33,6 @@
 /* Begin PBXFileReference section */
 		857C94941CE09BE700BC0101 /* LocaliserMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaliserMap.swift; sourceTree = "<group>"; };
 		D52410DF1C9ABA2800DA1A75 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Login.swift; path = Login/Login.swift; sourceTree = "<group>"; };
-		D52410E21C9AE08E00DA1A75 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = Extensions/Extension.swift; sourceTree = "<group>"; };
 		D59636F91CB66787008C3202 /* Utilisateur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilisateur.swift; path = Login/Utilisateur.swift; sourceTree = "<group>"; };
 		D59636FB1CB667B3008C3202 /* Localisation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localisation.swift; sourceTree = "<group>"; };
 		D59B16361CBE7D63004DD2CE /* Inscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Inscription.swift; path = Login/Inscription.swift; sourceTree = "<group>"; };
@@ -79,14 +77,6 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
-		D52410E11C9AE03700DA1A75 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				D52410E21C9AE08E00DA1A75 /* Extension.swift */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
 		D64F659A1C99C0FC0029278E = {
 			isa = PBXGroup;
 			children = (
@@ -108,7 +98,6 @@
 		D64F65A51C99C0FC0029278E /* Positions */ = {
 			isa = PBXGroup;
 			children = (
-				D52410E11C9AE03700DA1A75 /* Extensions */,
 				D52410DE1C9AB99700DA1A75 /* Login */,
 				D64F65A81C99C0FC0029278E /* AppDelegate.swift */,
 				D64F65AF1C99C0FC0029278E /* Main.storyboard */,
@@ -255,7 +244,6 @@
 				D64F65AC1C99C0FC0029278E /* Positions.xcdatamodeld in Sources */,
 				D59636FA1CB66787008C3202 /* Utilisateur.swift in Sources */,
 				D64F65A91C99C0FC0029278E /* AppDelegate.swift in Sources */,
-				D52410E31C9AE08E00DA1A75 /* Extension.swift in Sources */,
 				D59636FC1CB667B3008C3202 /* Localisation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

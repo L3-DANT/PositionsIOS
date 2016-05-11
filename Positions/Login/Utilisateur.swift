@@ -26,6 +26,10 @@ class Utilisateur: Localisation {
         super.init(longitude:longitude, latitude:latitude, heure:heure, date:date)
     }
     
+    //func description () -> String {
+        
+    //}
+    
     func affiche(){
         print("Nom : " + self.nom)
         print("prenom : " + self.prenom)
