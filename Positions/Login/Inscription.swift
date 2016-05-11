@@ -49,7 +49,11 @@ class Inscription: UIViewController {
         
         if (VerifMotPass(MotPasseString, MotPasse1String: Motpasse2String)){
             VerifString = self.Verif.text!
-            EnregistrementUtilisateur.enregistrement(MotPasseString,motPasse1: Motpasse2String,mail: MailString,pseudo: PseudoString, verif: VerifString)
+            if(EnregistrementUtilisateur.enregistrement(MotPasseString,motPasse1: Motpasse2String,mail: MailString,pseudo: PseudoString, verif: VerifString)){
+                self.Verif.text = "Inscription réussie"
+            }else{
+                self.Verif.text = "Pseudo Deja existant"
+            }
         }
         
     }

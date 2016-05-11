@@ -142,7 +142,18 @@
                             <outlet property="delegate" destination="aSw-2q-UQL" id="FYP-yy-GJX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Login" id="QGC-Ey-fUN"/>
+                    <navigationItem key="navigationItem" title="Login" id="QGC-Ey-fUN">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="4xI-O9-dgZ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kU5-nZ-9uz">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="NPc-gy-7Wb" kind="show" id="fKk-q2-7in"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="btnPasswordView" destination="HrX-5B-Wnl" id="YZ5-gP-dfa"/>
@@ -335,7 +346,96 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qej-Qg-obG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1454" y="350"/>
+            <point key="canvasLocation" x="1512" y="1308"/>
+        </scene>
+        <!--Mes Amis-->
+        <scene sceneID="5Es-uv-enw">
+            <objects>
+                <viewController id="NPc-gy-7Wb" customClass="MesAmis" customModule="Positions" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="64Z-PJ-29i"/>
+                        <viewControllerLayoutGuide type="bottom" id="uIc-mF-bTR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vmS-co-IbO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3D5-4g-p6g">
+                                <rect key="frame" x="0.0" y="687" width="414" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="Mes amis" image="ContactIcon" id="xnO-UC-IR9"/>
+                                    <tabBarItem title="Invitation" image="InvitationIcon" id="9Ux-64-3NR"/>
+                                    <tabBarItem title="Paramètre" image="ParametreIcon" id="KX2-Hk-cMS"/>
+                                    <tabBarItem title="Déconnexion" image="SignOutIcon" id="BRy-gL-mRK"/>
+                                </items>
+                            </tabBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YrP-qj-liY">
+                                <rect key="frame" x="0.0" y="64" width="414" height="623"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="djH-Nc-eyf">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="djH-Nc-eyf" id="wGe-dr-7d3">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uIc-mF-bTR" firstAttribute="top" secondItem="YrP-qj-liY" secondAttribute="bottom" constant="49" id="cBU-4e-KZN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3D5-4g-p6g" secondAttribute="trailing" constant="-20" id="ewe-Nn-eN0"/>
+                            <constraint firstItem="3D5-4g-p6g" firstAttribute="leading" secondItem="vmS-co-IbO" secondAttribute="leadingMargin" constant="-20" id="ijn-HH-JNd"/>
+                            <constraint firstItem="uIc-mF-bTR" firstAttribute="top" secondItem="3D5-4g-p6g" secondAttribute="bottom" id="odj-IL-zUF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableview" destination="YrP-qj-liY" id="TXG-Jd-q6r"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t1s-JM-ZhH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1625" y="124"/>
+        </scene>
+        <!--invitations-->
+        <scene sceneID="xlr-qy-I1q">
+            <objects>
+                <viewController id="64p-ws-5do" userLabel="invitations" customClass="MesAmis" customModule="Positions" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XwJ-sg-bJr"/>
+                        <viewControllerLayoutGuide type="bottom" id="IXe-i4-6Qx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3YQ-MT-hao">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5gA-R6-W19">
+                                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="Mes amis" image="ContactIcon" id="mwZ-QP-yKe"/>
+                                    <tabBarItem title="Invitation" image="InvitationIcon" id="ESV-MZ-RZM"/>
+                                    <tabBarItem title="Paramètre" image="ParametreIcon" id="qgP-Wm-MyG"/>
+                                    <tabBarItem title="Déconnexion" image="SignOutIcon" id="ekW-kY-VPN"/>
+                                </items>
+                            </tabBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="5gA-R6-W19" secondAttribute="trailing" constant="-20" id="JcP-1D-HyD"/>
+                            <constraint firstItem="5gA-R6-W19" firstAttribute="leading" secondItem="3YQ-MT-hao" secondAttribute="leadingMargin" constant="-20" id="K02-aW-cwW"/>
+                            <constraint firstItem="IXe-i4-6Qx" firstAttribute="top" secondItem="5gA-R6-W19" secondAttribute="bottom" id="mjI-rl-vpe"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MIx-DA-5Pt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1039" y="-362"/>
         </scene>
     </scenes>
     <resources>
