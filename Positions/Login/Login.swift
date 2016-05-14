@@ -10,31 +10,6 @@ import UIKit
 
 class Login: UITableViewController {
     
-    /* Utilisateur 
-    var utilisateur:[Utilisateur] = [Utilisateur]()
-    
-    struct Utilisateur {
-        var nom:String = ""
-        var prenom:String = ""
-        var motDePasse:String = ""
-        var pseudo:String = ""
-        //var localisation:String = ""
-        init(data:NSDictionary){
-            if let add = data["nom"] as? String {
-                self.nom = add
-            }
-            if let add = data["prenom"] as? String {
-                self.prenom = add
-            }
-            if let add = data["pseudo"] as? String {
-                self.pseudo = add
-            }
-            if let add = data["motDePasse"] as? String {
-                self.motDePasse = add
-            }
-        }
-    }*/
-    
 
     @IBOutlet weak var txtUsername: UITextField!
     
@@ -48,8 +23,6 @@ class Login: UITableViewController {
     var usernamesString:String!
     
     override func viewDidLoad() {
-        
-        
         super.viewDidLoad()
         passwordViewConfig()
       //  loginViewConfig()
@@ -77,9 +50,6 @@ class Login: UITableViewController {
             
         }
     }
-    
-   
-   
     
     
     // redirige la cellule username a la cellune password
@@ -115,12 +85,7 @@ class Login: UITableViewController {
     }
 
     
-    //function config bckgrnd img login button
-   /* func loginViewConfig() {
-        let imageBackground = makeImagewithColor(UIColor(red: 0/255, green: 146/255, blue: 69/255, alpha: 1.0))
-        loginView.setBackgroundImage(imageBackground, forState: UIControlState.Normal)
-        loginView.tintColor = UIColor.whiteColor()
-    } */
+
     
     @IBAction func loginAction(sender: AnyObject) {
     
@@ -177,36 +142,5 @@ class Login: UITableViewController {
         
     }
    
-    
-    
-    // Extraction Json Données 
-    /*
-    func extract_json_data(data:NSDictionary)
-    {
-        var json: AnyObject?
-        print("ret")
-        
-        json =  data //try NSJSONSerialization.JSONObjectWithData(data, options: [])
-        
-        
-        guard let data_array = json as? NSArray else
-        {
-            return
-        }
-        
-        
-        for(var i = 0; i < data_array.count; i++)
-        {
-            print("Affiche ")
-            utilisateur.append(Utilisateur(data: data_array[i] as! NSDictionary))
-        }
-        
-        print("Affiche un utilisateur : ")
-        print(utilisateur)
-    
-        
-    }*/
-    
-  
-    
+
 }

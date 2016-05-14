@@ -44,7 +44,7 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        print("didReceive")
+
     }
     
     
@@ -71,7 +71,6 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
     
     func envoi(la:Double, lo:Double){
         
-        print("helpppppppppppp")
         let url = "http://134.157.245.93:8080/Positions/utilisateur/testLoc"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         

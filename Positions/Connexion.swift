@@ -18,7 +18,6 @@ class Connexion {
         
         retour = false
         
-        
     let url = "http://132.227.125.220:8080/Positions/utilisateur/connexion"
     let request = NSMutableURLRequest(URL: NSURL(string: url)!)
     

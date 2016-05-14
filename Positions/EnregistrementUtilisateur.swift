@@ -10,18 +10,15 @@ class EnregistrementUtilisateur{
         
         retour = false 
         
-        let url = "http://132.227.125.220:8080/Positions/utilisateur/inscription"
+        let url = "http://132.227.125.88:8080/Positions/utilisateur/inscription"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         
         let session = NSURLSession.sharedSession()
-        print("session ok")
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        print("requete ok")
         let params = ["pseudo":pseudo, "motDePasse":motPasse, "mail":mail] as Dictionary<String, String>
         do {
-            print("re ok")
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
         } catch {
             print(error)
