@@ -17,14 +17,18 @@ class Utilisateur {
     let pseudo:String
     let token:String
     var local:Localisation
+    var listeAmis:ListeAmis
+    var listeInvitation:ListeInvitation
  
-    init(nom: String, prenom:String, motDePasse:String, pseudo:String, token:String, localisation:Localisation) {
+    init(nom: String, prenom:String, motDePasse:String, pseudo:String, token:String, localisation:Localisation,listeAmis:ListeAmis, listeInvitation:ListeInvitation) {
         self.nom = nom
         self.prenom = prenom
         self.motDePasse = motDePasse
         self.pseudo = pseudo
         self.token = token
         self.local = localisation
+        self.listeAmis = listeAmis
+        self.listeInvitation = listeInvitation
     }
     
     //func description () -> String {

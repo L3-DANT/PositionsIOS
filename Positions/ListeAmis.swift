@@ -23,4 +23,5 @@ class ListeAmis{
         Amis(pseudo:"Lux")
     ]
     
+   
 }

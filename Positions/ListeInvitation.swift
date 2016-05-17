@@ -23,5 +23,5 @@ class ListeInvitation{
         Invitation(pseudo:"Davy"),
         Invitation(pseudo:"Xue")
     ]
-    
+        
 }

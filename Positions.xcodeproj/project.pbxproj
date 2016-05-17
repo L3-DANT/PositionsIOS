@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		852E25831CEB8F9400386815 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 852E25821CEB8F9400386815 /* libsqlite3.0.tbd */; };
+		852E25861CEB946500386815 /* fmdb in Resources */ = {isa = PBXBuildFile; fileRef = 852E25851CEB946500386815 /* fmdb */; };
+		852E25891CEB969800386815 /* testDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E25881CEB969800386815 /* testDB.swift */; };
 		856A39E61CE747E50095B06B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 856A39E51CE747E50095B06B /* Images.xcassets */; };
 		856A39EF1CE74A6A0095B06B /* MesInvitations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856A39EE1CE74A6A0095B06B /* MesInvitations.swift */; };
 		856A39F11CE74A800095B06B /* MesInvitationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856A39F01CE74A800095B06B /* MesInvitationsCell.swift */; };
@@ -40,6 +43,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		852E25821CEB8F9400386815 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		852E25851CEB946500386815 /* fmdb */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fmdb; path = "../../../Downloads/fmdb-master/src/fmdb"; sourceTree = "<group>"; };
+		852E25871CEB94B700386815 /* Positions-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Positions-Bridging-Header.h"; sourceTree = "<group>"; };
+		852E25881CEB969800386815 /* testDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testDB.swift; sourceTree = "<group>"; };
 		856A39E51CE747E50095B06B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		856A39EE1CE74A6A0095B06B /* MesInvitations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MesInvitations.swift; sourceTree = "<group>"; };
 		856A39F01CE74A800095B06B /* MesInvitationsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MesInvitationsCell.swift; sourceTree = "<group>"; };
@@ -71,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				852E25831CEB8F9400386815 /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +92,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		852E25841CEB945400386815 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				852E25851CEB946500386815 /* fmdb */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
 		85D259D61CE331EA000F2D45 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +138,7 @@
 		D64F659A1C99C0FC0029278E = {
 			isa = PBXGroup;
 			children = (
+				852E25821CEB8F9400386815 /* libsqlite3.0.tbd */,
 				D64F65A51C99C0FC0029278E /* Positions */,
 				D64F65BE1C99C0FC0029278E /* PositionsTests */,
 				D64F65A41C99C0FC0029278E /* Products */,
@@ -140,6 +157,7 @@
 		D64F65A51C99C0FC0029278E /* Positions */ = {
 			isa = PBXGroup;
 			children = (
+				852E25841CEB945400386815 /* Framework */,
 				85D259DA1CE35CC0000F2D45 /* Fonctionnalites */,
 				85D259D91CE35C5F000F2D45 /* Class */,
 				85D259D61CE331EA000F2D45 /* Extension */,
@@ -148,7 +166,9 @@
 				856A39E51CE747E50095B06B /* Images.xcassets */,
 				D64F65B41C99C0FC0029278E /* LaunchScreen.xib */,
 				D64F65AA1C99C0FC0029278E /* Positions.xcdatamodeld */,
+				852E25871CEB94B700386815 /* Positions-Bridging-Header.h */,
 				D64F65A61C99C0FC0029278E /* Supporting Files */,
+				852E25881CEB969800386815 /* testDB.swift */,
 			);
 			path = Positions;
 			sourceTree = "<group>";
@@ -262,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				856A39E61CE747E50095B06B /* Images.xcassets in Resources */,
+				852E25861CEB946500386815 /* fmdb in Resources */,
 				D64F65B11C99C0FC0029278E /* Main.storyboard in Resources */,
 				D64F65B61C99C0FC0029278E /* LaunchScreen.xib in Resources */,
 			);
@@ -293,6 +314,7 @@
 				85D25A1A1CE71EA0000F2D45 /* Deconnexion.swift in Sources */,
 				85D25A201CE726EE000F2D45 /* MesAmisCell.swift in Sources */,
 				85D25A1C1CE7244D000F2D45 /* MesAmis.swift in Sources */,
+				852E25891CEB969800386815 /* testDB.swift in Sources */,
 				856A39EF1CE74A6A0095B06B /* MesInvitations.swift in Sources */,
 				85D259DC1CE36C95000F2D45 /* Connexion.swift in Sources */,
 				85D25A221CE73FF7000F2D45 /* ListeInvitation.swift in Sources */,
@@ -433,6 +455,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Positions.xue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Positions-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -447,6 +470,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Positions.xue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Positions-Bridging-Header.h";
 			};
 			name = Release;
 		};
