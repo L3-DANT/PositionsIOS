@@ -26,9 +26,12 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
 
     @IBOutlet weak var openMap: MKMapView!
     
-    //@IBOutlet weak var openMap: MKMapView!
-    
     var locationManager: CLLocationManager!
+    //var cl = CLLocationCoordinate2D(latitude: 48.8,longitude: 2.35)
+    //let myLocation = CLLocation(latitude: 37, longitude: -122)
+    
+    
+   
     
     
     override func viewDidLoad() {
@@ -39,6 +42,14 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         locationManager.requestAlwaysAuthorization()//demande l'autorisation de localisation
         locationManager.startUpdatingLocation()//start
         openMap.showsUserLocation = true//affiche mon point
+        
+        let data = ListeAmis()
+        for index in 0...1 {
+            let pos = data.donnee[index]
+            let pin = PositionsAmis(cll: pos.position, nom: pos.pseudo)
+            openMap.addAnnotation(pin)
+        }
+        
         
     }
     
@@ -66,6 +77,8 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         //
         //        print(date)
     }
+    
+    
     
     
     
@@ -106,6 +119,11 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         }
         task.resume()
     }
+    
+    
+    
+    
+    
     
     
     

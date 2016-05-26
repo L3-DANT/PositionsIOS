@@ -143,7 +143,7 @@ class Login: UITableViewController {
     }
     
     
-    @IBAction func testDB(sender: AnyObject) {
+    /*@IBAction func testDB(sender: AnyObject) {
        
             //let documentsFolder = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
             //let path = documentsFolder.stringByAppendingPathComponent("test.sqlite")
@@ -195,7 +195,7 @@ class Login: UITableViewController {
             database.close()
         
     }
-    
+    */
     
     
    

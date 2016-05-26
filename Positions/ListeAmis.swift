@@ -7,20 +7,23 @@
 //
 
 import Foundation
+import CoreLocation
 
 class ListeAmis{
     
     class Amis{
         let pseudo: String
+        var position : CLLocationCoordinate2D
         
-        init(pseudo:String){
+        init(pseudo:String,position:CLLocationCoordinate2D){
             self.pseudo = pseudo
+            self.position = position
         }
     }
     
     let donnee = [
-        Amis(pseudo:"Sebastien"),
-        Amis(pseudo:"Lux")
+        Amis(pseudo:"Sebastien",position:CLLocationCoordinate2D(latitude: 48.8,longitude: 2.35)),
+        Amis(pseudo:"Lux",position:CLLocationCoordinate2D(latitude: 48.832,longitude: 2.3445))
     ]
     
    
