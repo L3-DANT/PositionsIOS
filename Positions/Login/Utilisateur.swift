@@ -31,9 +31,7 @@ class Utilisateur {
         self.listeInvitation = listeInvitation
     }
     
-    //func description () -> String {
-        
-    //}
+
     
     func affiche(){
         print("Nom : " + self.nom)

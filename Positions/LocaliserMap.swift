@@ -44,7 +44,9 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         openMap.showsUserLocation = true//affiche mon point
         
         let data = ListeAmis()
-        for index in 0...1 {
+        let totale = data.donnee.count-1
+        print(totale)
+        for index in 0...totale{
             let pos = data.donnee[index]
             let pin = PositionsAmis(cll: pos.position, nom: pos.pseudo)
             openMap.addAnnotation(pin)
@@ -67,11 +69,11 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         
         envoi(latitude!,lo:longitude!)
         
-        let width = 1000.0
+        /*let width = 1000.0
         let height = 1000.0
         let center = CLLocationCoordinate2D(latitude:latitude!, longitude:longitude!)
         let region = MKCoordinateRegionMakeWithDistance(center, width, height)
-        openMap.setRegion(region, animated: true)
+        openMap.setRegion(region, animated: true)*/
         
         //        let date = NSDate()
         //

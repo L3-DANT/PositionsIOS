@@ -491,6 +491,9 @@
                                                 <constraint firstAttribute="width" constant="32" id="uSI-0p-tm3"/>
                                             </constraints>
                                             <state key="normal" backgroundImage="AcceptIcon"/>
+                                            <connections>
+                                                <action selector="acceptInvitation:" destination="RKx-sq-HCu" eventType="touchUpInside" id="S1r-yL-Jgv"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQy-aI-HZN">
                                             <rect key="frame" x="358" y="17" width="32" height="32"/>
@@ -499,6 +502,9 @@
                                                 <constraint firstAttribute="height" constant="32" id="ePb-GD-DLt"/>
                                             </constraints>
                                             <state key="normal" backgroundImage="RefusIcon"/>
+                                            <connections>
+                                                <action selector="refuseInvitation:" destination="RKx-sq-HCu" eventType="touchUpInside" id="Ri3-4w-Veq"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>

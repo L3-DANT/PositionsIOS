@@ -12,26 +12,14 @@ import MapKit
 class PositionsAmis: NSObject, MKAnnotation{
     
     var coordinate: CLLocationCoordinate2D
-    var nom:String
+    var title: String?
     
     
-    /*
-    init(lo:Float, la:Float) {
-        self.longitude=lo
-        self.latitude=la
-    }*/
-    
- 
     
     init(cll:CLLocationCoordinate2D, nom:String) {
         self.coordinate=cll
-        self.nom=nom
+        self.title=nom
     }
     
-   /* init(lo:CLLocationDegrees, la:CLLocationDegrees){
-        self.longitude = lo
-        self.latitude = la
-    }
- */
     
 }
