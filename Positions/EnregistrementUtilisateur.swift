@@ -10,7 +10,7 @@ class EnregistrementUtilisateur{
         
         retour = false 
         
-        let url = "http://132.227.125.88:8080/Positions/utilisateur/inscription"
+        let url = "http://92.170.201.10:8080/Positions/utilisateur/inscription"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         
         let session = NSURLSession.sharedSession()

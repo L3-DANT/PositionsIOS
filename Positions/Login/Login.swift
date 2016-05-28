@@ -89,115 +89,78 @@ class Login: UITableViewController {
     
     @IBAction func loginAction(sender: AnyObject) {
     
-        let url = "http://134.157.245.93:8080/Positions/utilisateur/inscription"
-        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         
-        let session = NSURLSession.sharedSession()
-        request.HTTPMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        let params = ["nom":txtUsername.text!, "prenom":txtPassword.text!,"pseudo":"Mp24qzasfdsqqdp", "motDePasse":"AZECODE"] as Dictionary<String, String>
-        do {
-            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
-        } catch {
-            print(error)
-        }
+        let pseudo = txtUsername.text!
+        let motDePasse = txtPassword.text!
         
-        let task = session.dataTaskWithRequest(request) { data, response, error in
-            guard data != nil else {
-                print("no data found: \(error)")
-                return
-            }
+        let pseudoAlert = UIAlertController(title: "Error", message:
+            "Le pseudo est obligatoire!", preferredStyle: UIAlertControllerStyle.Alert)
+        pseudoAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
+        
+        let pwdAlert = UIAlertController(title: "Error", message:
+            "Le mot de passe est obligatoire!", preferredStyle: UIAlertControllerStyle.Alert)
+        pwdAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
+        
+        let errorAlert = UIAlertController(title: "Error", message:
+            "Connexion error!", preferredStyle: UIAlertControllerStyle.Alert)
+        errorAlert.addAction(UIAlertAction(title: "Retour", style: UIAlertActionStyle.Default,handler: nil))
+
+    
+        
+        if pseudo.isEmpty {
+            self.presentViewController(pseudoAlert, animated: true, completion: nil)
+        } else if motDePasse.isEmpty {
+            self.presentViewController(pwdAlert, animated: true, completion: nil)
+        } else {
+            
+            let url = "http://92.170.201.10/Positions/utilisateur/connexion"
+            let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+            
+            let session = NSURLSession.sharedSession()
+            request.HTTPMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            
+            let params = ["pseudo":pseudo, "motDePasse":motDePasse] as Dictionary<String, String>
             do {
-                if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
-                    let success = json["pseudo"] as? String
-                    print("Success: \(success)")
-                    print((json["localisation:date"] as? String))
-                    // print(json)
-                    //self.extract_json_data(json)
-                  
-                  /*  let user = Utilisateur(nom: (json["nom"] as? String)!, prenom: (json["prenom"] as? String)!, motDePasse: (json["motDePasse"] as? String)!, pseudo: (json["pseudo"] as? String)!, latitude: (json["latitude"] as? Float)!, longitude: (json["longitude"] as? Float)!, heure: (json["heure"] as? String)!, date: (json["date"] as? String)!, token: (json["token"] as? String)!)
-                   
-                    user.affiche()
-                     */
-                    
-                } else {
+                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
+            } catch {
+                print(error)
+            }
+            
+            let task = session.dataTaskWithRequest(request) { data, response, error in
+                guard data != nil else {
+                    print("no data found: \(error)")
+                    return
+                }
+                do {
+                    if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
+                        let success = json["pseudo"] as? String
+                        print(json)
+                        print("Success: \(success)")
+                        print((json["localisation:date"] as? String))
+                        
+                    } else {
+                        let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                            self.presentViewController(errorAlert, animated: true, completion: nil)
+                     
+                        if (jsonStr == true){
+                            self.performSegueWithIdentifier("LocaliserMap", sender: self)
+                        }
+                    }
+                } catch let parseError {
+                    print(parseError)
                     let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                    print("Error could not parse JSON: \(jsonStr)")
+                        self.presentViewController(errorAlert, animated: true, completion: nil)
+                      
                     if (jsonStr == true){
-                        print("Connexion reussie !");
+                        self.performSegueWithIdentifier("LocaliserMap", sender: self)
                     }
                 }
-            } catch let parseError {
-                print(parseError)
-                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                print("Error could not parse JSON: '\(jsonStr)'")
-                if (jsonStr == true){
-                    print("Connexion reussie !");
-                }
             }
+            task.resume()
         }
-        task.resume()
-      
-        
     }
     
-    
-    /*@IBAction func testDB(sender: AnyObject) {
-       
-            //let documentsFolder = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-            //let path = documentsFolder.stringByAppendingPathComponent("test.sqlite")
-        
-        //let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-        //let fileURL = documentsURL.URLByAppendingPathComponent("test.sqlite")
-        
-        let filename = "test.sqlite"
-        
-        guard let directoryURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first else {
-            print("directory is nil")
-            return
-        }
-        guard let path = directoryURL.URLByAppendingPathComponent(filename).path else {
-            print("path is nil")
-            return
-        }
-            
-            let database = FMDatabase(path: path)
-            
-            if !database.open() {
-                print("Unable to open database")
-                return
-            }
-            
-            if !database.executeUpdate("create table test(x text, y text, z text)", withArgumentsInArray: nil) {
-                print("create table failed: \(database.lastErrorMessage())")
-            }
-            
-            if !database.executeUpdate("insert into test (x, y, z) values (?, ?, ?)", withArgumentsInArray: ["a", "b", "c"]) {
-                print("insert 1 table failed: \(database.lastErrorMessage())")
-            }
-            
-            if !database.executeUpdate("insert into test (x, y, z) values (?, ?, ?)", withArgumentsInArray: ["e", "f", "g"]) {
-                print("insert 2 table failed: \(database.lastErrorMessage())")
-            }
-            
-            if let rs = database.executeQuery("select x, y, z from test", withArgumentsInArray: nil) {
-                while rs.next() {
-                    let x = rs.stringForColumn("x")
-                    let y = rs.stringForColumn("y")
-                    let z = rs.stringForColumn("z")
-                    print("x = \(x); y = \(y); z = \(z)")
-                }
-            } else {
-                print("select failed: \(database.lastErrorMessage())")
-            }
-            
-            database.close()
-        
-    }
-    */
-    
-    
-   
 
 }

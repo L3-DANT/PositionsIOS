@@ -44,11 +44,11 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         locationManager.startUpdatingLocation()//start
         openMap.showsUserLocation = true//affiche mon point
         
-        let data = ListeAmis()
-        let totale = data.donnee.count-1
+        let data = [Amis]()
+        let totale = data.count-1
         print(totale)
         for index in 0...totale{
-            let pos = data.donnee[index]
+            let pos = data[index]
             let pin = PositionsAmis(cll: pos.position, nom: pos.pseudo)
             openMap.addAnnotation(pin)
         }
@@ -87,7 +87,7 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
     
     func envoi(la:Double, lo:Double){
         
-        let url = "http://134.157.245.93:8080/Positions/utilisateur/testLoc"
+        let url = "http://92.170.201.10:8080/Positions/utilisateur/testLoc"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         
         let session = NSURLSession.sharedSession()

@@ -18,9 +18,9 @@
 		85D259DC1CE36C95000F2D45 /* Connexion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D259DB1CE36C95000F2D45 /* Connexion.swift */; };
 		85D25A1A1CE71EA0000F2D45 /* Deconnexion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D25A191CE71EA0000F2D45 /* Deconnexion.swift */; };
 		85D25A1C1CE7244D000F2D45 /* MesAmis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D25A1B1CE7244D000F2D45 /* MesAmis.swift */; };
-		85D25A1E1CE72467000F2D45 /* ListeAmis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D25A1D1CE72467000F2D45 /* ListeAmis.swift */; };
+		85D25A1E1CE72467000F2D45 /* Amis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D25A1D1CE72467000F2D45 /* Amis.swift */; };
 		85D25A201CE726EE000F2D45 /* MesAmisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D25A1F1CE726EE000F2D45 /* MesAmisCell.swift */; };
-		85D25A221CE73FF7000F2D45 /* ListeInvitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D25A211CE73FF7000F2D45 /* ListeInvitation.swift */; };
+		85D25A221CE73FF7000F2D45 /* Invitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D25A211CE73FF7000F2D45 /* Invitation.swift */; };
 		8CF520956F277E1790B9BE88 /* Pods_Positions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A34AF51313B9FFDFDF970F23 /* Pods_Positions.framework */; };
 		D52410E01C9ABA2800DA1A75 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52410DF1C9ABA2800DA1A75 /* Login.swift */; };
 		D59636FA1CB66787008C3202 /* Utilisateur.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59636F91CB66787008C3202 /* Utilisateur.swift */; };
@@ -55,9 +55,9 @@
 		85D259DB1CE36C95000F2D45 /* Connexion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connexion.swift; sourceTree = "<group>"; };
 		85D25A191CE71EA0000F2D45 /* Deconnexion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deconnexion.swift; sourceTree = "<group>"; };
 		85D25A1B1CE7244D000F2D45 /* MesAmis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MesAmis.swift; sourceTree = "<group>"; };
-		85D25A1D1CE72467000F2D45 /* ListeAmis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListeAmis.swift; sourceTree = "<group>"; };
+		85D25A1D1CE72467000F2D45 /* Amis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Amis.swift; sourceTree = "<group>"; };
 		85D25A1F1CE726EE000F2D45 /* MesAmisCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MesAmisCell.swift; sourceTree = "<group>"; };
-		85D25A211CE73FF7000F2D45 /* ListeInvitation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListeInvitation.swift; sourceTree = "<group>"; };
+		85D25A211CE73FF7000F2D45 /* Invitation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invitation.swift; sourceTree = "<group>"; };
 		8B030C8EA9903A9BAE82979C /* Pods-Positions.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Positions.release.xcconfig"; path = "Pods/Target Support Files/Pods-Positions/Pods-Positions.release.xcconfig"; sourceTree = "<group>"; };
 		A34AF51313B9FFDFDF970F23 /* Pods_Positions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Positions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC98F289264AD6C1EAA1026A /* Pods-PositionsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PositionsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PositionsTests/Pods-PositionsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -119,8 +119,8 @@
 			children = (
 				D59636F91CB66787008C3202 /* Utilisateur.swift */,
 				D59636FB1CB667B3008C3202 /* Localisation.swift */,
-				85D25A1D1CE72467000F2D45 /* ListeAmis.swift */,
-				85D25A211CE73FF7000F2D45 /* ListeInvitation.swift */,
+				85D25A1D1CE72467000F2D45 /* Amis.swift */,
+				85D25A211CE73FF7000F2D45 /* Invitation.swift */,
 				852E258A1CF6197700386815 /* PositionsAmis.swift */,
 			);
 			name = Class;
@@ -433,7 +433,7 @@
 				857C94951CE09BE700BC0101 /* LocaliserMap.swift in Sources */,
 				D59B16371CBE7D63004DD2CE /* Inscription.swift in Sources */,
 				D64F65AC1C99C0FC0029278E /* Positions.xcdatamodeld in Sources */,
-				85D25A1E1CE72467000F2D45 /* ListeAmis.swift in Sources */,
+				85D25A1E1CE72467000F2D45 /* Amis.swift in Sources */,
 				D59636FA1CB66787008C3202 /* Utilisateur.swift in Sources */,
 				D64F65A91C99C0FC0029278E /* AppDelegate.swift in Sources */,
 				85D25A1A1CE71EA0000F2D45 /* Deconnexion.swift in Sources */,
@@ -442,7 +442,7 @@
 				852E25891CEB969800386815 /* testDB.swift in Sources */,
 				856A39EF1CE74A6A0095B06B /* MesInvitations.swift in Sources */,
 				85D259DC1CE36C95000F2D45 /* Connexion.swift in Sources */,
-				85D25A221CE73FF7000F2D45 /* ListeInvitation.swift in Sources */,
+				85D25A221CE73FF7000F2D45 /* Invitation.swift in Sources */,
 				D59636FC1CB667B3008C3202 /* Localisation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

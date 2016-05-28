@@ -66,7 +66,7 @@ class Inscription: UIViewController {
             return true
         
         }else {
-            self.Verif.text = "Mots de passe incorrect"
+            self.Verif.text = "Mot de passe incorrect"
             return false
         }
     }

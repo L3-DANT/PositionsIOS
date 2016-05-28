@@ -10,7 +10,7 @@ import UIKit
 
 class MesAmis: UITableViewController {
     
-    let data = ListeAmis()
+    let data = [Amis]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,14 +32,14 @@ class MesAmis: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return data.donnee.count
+        return data.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cellule", forIndexPath: indexPath) as! MesAmisCell
 
-        let entre = data.donnee[indexPath.row]
+        let entre = data[indexPath.row]
         
         cell.titleCell.setTitle(entre.pseudo, forState: .Normal)
 

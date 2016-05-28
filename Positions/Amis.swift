@@ -9,8 +9,7 @@
 import Foundation
 import CoreLocation
 
-class ListeAmis{
-    
+
     class Amis{
         let pseudo: String
         var position : CLLocationCoordinate2D
@@ -27,5 +26,3 @@ class ListeAmis{
         Amis(pseudo:"Maxime",position:CLLocationCoordinate2D(latitude: 48.7132,longitude: 2.13445))
     ]
     
-   
-}

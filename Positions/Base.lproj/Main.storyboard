@@ -156,24 +156,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MkJ-cT-iMj" id="h09-nH-75t">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y1T-zC-avT">
-                                                    <rect key="frame" x="184" y="8" width="46" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="Dbd-qC-etw"/>
-                                                        <constraint firstAttribute="width" constant="46" id="Eih-vl-bKY"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button"/>
-                                                    <connections>
-                                                        <action selector="testDB:" destination="aSw-2q-UQL" eventType="touchUpInside" id="VcJ-hC-sGi"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="y1T-zC-avT" firstAttribute="leading" secondItem="h09-nH-75t" secondAttribute="leadingMargin" constant="176" id="C2l-b9-QVb"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="y1T-zC-avT" secondAttribute="trailing" constant="176" id="VyV-fv-575"/>
-                                                <constraint firstItem="y1T-zC-avT" firstAttribute="top" secondItem="h09-nH-75t" secondAttribute="topMargin" id="edA-w9-wwI"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
