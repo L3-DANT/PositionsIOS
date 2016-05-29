@@ -10,31 +10,6 @@ import UIKit
 
 class Login: UITableViewController {
     
-    /* Utilisateur 
-    var utilisateur:[Utilisateur] = [Utilisateur]()
-    
-    struct Utilisateur {
-        var nom:String = ""
-        var prenom:String = ""
-        var motDePasse:String = ""
-        var pseudo:String = ""
-        //var localisation:String = ""
-        init(data:NSDictionary){
-            if let add = data["nom"] as? String {
-                self.nom = add
-            }
-            if let add = data["prenom"] as? String {
-                self.prenom = add
-            }
-            if let add = data["pseudo"] as? String {
-                self.pseudo = add
-            }
-            if let add = data["motDePasse"] as? String {
-                self.motDePasse = add
-            }
-        }
-    }*/
-    
 
     @IBOutlet weak var txtUsername: UITextField!
     
@@ -48,9 +23,12 @@ class Login: UITableViewController {
     var usernamesString:String!
     
     override func viewDidLoad() {
-        
-        
         super.viewDidLoad()
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let token = defaults.stringForKey("token"){
+            print("connexion " + token)
+        
+        }
         passwordViewConfig()
       //  loginViewConfig()
         
@@ -77,9 +55,6 @@ class Login: UITableViewController {
             
         }
     }
-    
-   
-   
     
     
     // redirige la cellule username a la cellune password
@@ -115,98 +90,82 @@ class Login: UITableViewController {
     }
 
     
-    //function config bckgrnd img login button
-   /* func loginViewConfig() {
-        let imageBackground = makeImagewithColor(UIColor(red: 0/255, green: 146/255, blue: 69/255, alpha: 1.0))
-        loginView.setBackgroundImage(imageBackground, forState: UIControlState.Normal)
-        loginView.tintColor = UIColor.whiteColor()
-    } */
+
     
     @IBAction func loginAction(sender: AnyObject) {
     
-        let url = "http://134.157.245.93:8080/Positions/utilisateur/inscription"
-        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         
-        let session = NSURLSession.sharedSession()
-        request.HTTPMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        let params = ["nom":txtUsername.text!, "prenom":txtPassword.text!,"pseudo":"Mp24qzasfdsqqdp", "motDePasse":"AZECODE"] as Dictionary<String, String>
-        do {
-            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
-        } catch {
-            print(error)
-        }
+        let pseudo = txtUsername.text!
+        let motDePasse = txtPassword.text!
         
-        let task = session.dataTaskWithRequest(request) { data, response, error in
-            guard data != nil else {
-                print("no data found: \(error)")
-                return
-            }
+        let pseudoAlert = UIAlertController(title: "Error", message:
+            "Le pseudo est obligatoire!", preferredStyle: UIAlertControllerStyle.Alert)
+        pseudoAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
+        
+        let pwdAlert = UIAlertController(title: "Error", message:
+            "Le mot de passe est obligatoire!", preferredStyle: UIAlertControllerStyle.Alert)
+        pwdAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
+        
+        let errorAlert = UIAlertController(title: "Error", message:
+            "Connexion error!", preferredStyle: UIAlertControllerStyle.Alert)
+        errorAlert.addAction(UIAlertAction(title: "Retour", style: UIAlertActionStyle.Default,handler: nil))
+
+    
+        
+        if pseudo.isEmpty {
+            self.presentViewController(pseudoAlert, animated: true, completion: nil)
+        } else if motDePasse.isEmpty {
+            self.presentViewController(pwdAlert, animated: true, completion: nil)
+        } else {
+            
+            let url = "http://92.170.201.10/Positions/utilisateur/connexion"
+            let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+            
+            let session = NSURLSession.sharedSession()
+            request.HTTPMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            
+            let params = ["pseudo":pseudo, "motDePasse":motDePasse] as Dictionary<String, String>
             do {
-                if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
-                    let success = json["pseudo"] as? String
-                    print("Success: \(success)")
-                    print((json["localisation:date"] as? String))
-                    // print(json)
-                    //self.extract_json_data(json)
-                  
-                  /*  let user = Utilisateur(nom: (json["nom"] as? String)!, prenom: (json["prenom"] as? String)!, motDePasse: (json["motDePasse"] as? String)!, pseudo: (json["pseudo"] as? String)!, latitude: (json["latitude"] as? Float)!, longitude: (json["longitude"] as? Float)!, heure: (json["heure"] as? String)!, date: (json["date"] as? String)!, token: (json["token"] as? String)!)
-                   
-                    user.affiche()
-                     */
-                    
-                } else {
+                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
+            } catch {
+                print(error)
+            }
+            
+            let task = session.dataTaskWithRequest(request) { data, response, error in
+                guard data != nil else {
+                    print("no data found: \(error)")
+                    return
+                }
+                do {
+                    if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
+                        let success = json["pseudo"] as? String
+                        print(json)
+                        print("Success: \(success)")
+                        print((json["localisation:date"] as? String))
+                        
+                    } else {
+                        let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                            self.presentViewController(errorAlert, animated: true, completion: nil)
+                     
+                        if (jsonStr == true){
+                            self.performSegueWithIdentifier("LocaliserMap", sender: self)
+                        }
+                    }
+                } catch let parseError {
+                    print(parseError)
                     let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                    print("Error could not parse JSON: \(jsonStr)")
+                        self.presentViewController(errorAlert, animated: true, completion: nil)
+                      
                     if (jsonStr == true){
-                        print("Connexion reussie !");
+                        self.performSegueWithIdentifier("LocaliserMap", sender: self)
                     }
                 }
-            } catch let parseError {
-                print(parseError)
-                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                print("Error could not parse JSON: '\(jsonStr)'")
-                if (jsonStr == true){
-                    print("Connexion reussie !");
-                }
             }
+            task.resume()
         }
-        task.resume()
-      
-        
     }
-   
     
-    
-    // Extraction Json Données 
-    /*
-    func extract_json_data(data:NSDictionary)
-    {
-        var json: AnyObject?
-        print("ret")
-        
-        json =  data //try NSJSONSerialization.JSONObjectWithData(data, options: [])
-        
-        
-        guard let data_array = json as? NSArray else
-        {
-            return
-        }
-        
-        
-        for(var i = 0; i < data_array.count; i++)
-        {
-            print("Affiche ")
-            utilisateur.append(Utilisateur(data: data_array[i] as! NSDictionary))
-        }
-        
-        print("Affiche un utilisateur : ")
-        print(utilisateur)
-    
-        
-    }*/
-    
-  
-    
+
 }

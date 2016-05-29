@@ -17,19 +17,21 @@ class Utilisateur {
     let pseudo:String
     let token:String
     var local:Localisation
+    var listeAmis:[Amis]
+    var listeInvitation:[Invitation]
  
-    init(nom: String, prenom:String, motDePasse:String, pseudo:String, token:String, localisation:Localisation) {
+    init(nom: String, prenom:String, motDePasse:String, pseudo:String, token:String, localisation:Localisation,listeAmis:[Amis], listeInvitation:[Invitation]) {
         self.nom = nom
         self.prenom = prenom
         self.motDePasse = motDePasse
         self.pseudo = pseudo
         self.token = token
         self.local = localisation
+        self.listeAmis = listeAmis
+        self.listeInvitation = listeInvitation
     }
     
-    //func description () -> String {
-        
-    //}
+
     
     func affiche(){
         print("Nom : " + self.nom)

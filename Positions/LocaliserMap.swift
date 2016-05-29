@@ -21,30 +21,46 @@ import MapKit
 
 
 
+
 class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate {
     
 
     @IBOutlet weak var openMap: MKMapView!
     
-    //@IBOutlet weak var openMap: MKMapView!
-    
     var locationManager: CLLocationManager!
+    //var cl = CLLocationCoordinate2D(latitude: 48.8,longitude: 2.35)
+    //let myLocation = CLLocation(latitude: 37, longitude: -122)
+    
+    
+   
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         locationManager=CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest//précision pour la localisation
         locationManager.requestAlwaysAuthorization()//demande l'autorisation de localisation
         locationManager.startUpdatingLocation()//start
         openMap.showsUserLocation = true//affiche mon point
+        /*
+        let data = [Amis]()
+        let totale = data.count-1
+        print(totale)
+        for index in 0...totale{
+            let pos = data[index]
+            let pin = PositionsAmis(cll: pos.position, nom: pos.pseudo)
+            openMap.addAnnotation(pin)
+        }*/
+        
         
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        print("didReceive")
+
     }
     
     
@@ -56,11 +72,11 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         
         envoi(latitude!,lo:longitude!)
         
-        let width = 1000.0
+        /*let width = 1000.0
         let height = 1000.0
         let center = CLLocationCoordinate2D(latitude:latitude!, longitude:longitude!)
         let region = MKCoordinateRegionMakeWithDistance(center, width, height)
-        openMap.setRegion(region, animated: true)
+        openMap.setRegion(region, animated: true)*/
         
         //        let date = NSDate()
         //
@@ -69,10 +85,11 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
     
     
     
+    
+    
     func envoi(la:Double, lo:Double){
         
-        print("helpppppppppppp")
-        let url = "http://134.157.245.93:8080/Positions/utilisateur/testLoc"
+        let url = "http://92.170.201.10:8080/Positions/utilisateur/testLoc"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         
         let session = NSURLSession.sharedSession()
@@ -107,6 +124,11 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         }
         task.resume()
     }
+    
+    
+    
+    
+    
     
     
     

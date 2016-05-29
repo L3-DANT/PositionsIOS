@@ -18,9 +18,8 @@ class Connexion {
         
         retour = false
         
-        
-    let url = "http://132.227.125.220:8080/Positions/utilisateur/connexion"
-    let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        let url = "http://132.227.125.220:8080/Positions/utilisateur/connexion"
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
     
     let session = NSURLSession.sharedSession()
     print("session ok")
@@ -78,7 +77,7 @@ class Connexion {
     }
     task.resume()
     return retour 
-}
+    }
 
 
 }
