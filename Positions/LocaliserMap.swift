@@ -37,6 +37,9 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //[openMap performSelectorOnMainThread:@selector(initMap:) withObject:params waitUntilDone: YES];
+        
         locationManager=CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest//précision pour la localisation
