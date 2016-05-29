@@ -70,7 +70,7 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         print(latitude)
         print(longitude)
         
-        envoi(latitude!,lo:longitude!)
+        envoiLocation(latitude!,lo:longitude!)
         
         /*let width = 1000.0
         let height = 1000.0
@@ -87,16 +87,34 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
     
     
     
-    func envoi(la:Double, lo:Double){
+    func envoiLocation(la:Double, lo:Double){
         
-        let url = "http://92.170.201.10:8080/Positions/utilisateur/testLoc"
+        let url = "http://92.170.201.10/Positions/localisation/updateLoc"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         
         let session = NSURLSession.sharedSession()
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        let params = ["latitude":la , "longitude":lo] as Dictionary<String, Double>
+        
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day , .Month , .Year], fromDate: date)
+        let componentsHour = calendar.components([.Hour, .Minute], fromDate: date)
+        
+        
+        let hour = componentsHour.hour
+        let minutes = componentsHour.minute
+        
+        
+        let year =  components.year
+        let month = components.month
+        let day = components.day
+        
+        let stringDate = String(day)  + "/" + String(month) + "/" + String(year)
+        let stringHour = String(hour) + "/" + String(minutes)
+        
+        let params = ["pseudo": "aaaaa", "loc": ["latitude":la , "longitude":lo, "heure":stringHour, "date":stringDate] ] as Dictionary<String, AnyObject>
         do {
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
         } catch {
@@ -108,19 +126,7 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
                 print("no data found: \(error)")
                 return
             }
-            do {
-                if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
-                    let success = json["success"] as? Int
-                    print("Success: \(success)")
-                } else {
-                    let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                    print("Error could not parse JSON: \(jsonStr)")
-                }
-            } catch let parseError {
-                print(parseError)
-                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                print("Error could not parse JSON: '\(jsonStr)'")
-            }
+            
         }
         task.resume()
     }
