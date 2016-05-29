@@ -143,6 +143,8 @@ class Login: UITableViewController {
                 
                 if(data!.length != 0){
                     print("Connexion réussie")
+                    //On lance le sub a tous les channels
+                    PusherSub.subscribe()
                     
                     let defaults = NSUserDefaults.standardUserDefaults()
                     defaults.setValue(pseudo, forKey: "pseudo")

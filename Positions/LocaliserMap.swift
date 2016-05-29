@@ -67,9 +67,9 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         let latitude = locationManager.location?.coordinate.latitude
         let longitude = locationManager.location?.coordinate.longitude
-        print(latitude)
+        /*print(latitude)
         print(longitude)
-        
+        */
         envoiLocation(latitude!,lo:longitude!)
         
         /*let width = 1000.0
