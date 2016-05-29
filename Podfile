@@ -12,6 +12,6 @@ target 'Positions' do
     # Pods for testing
   end
 
-    
+  pod ‘PusherSwift’
 
 end
