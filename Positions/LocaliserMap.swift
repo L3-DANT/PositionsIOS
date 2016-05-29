@@ -114,21 +114,28 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         let stringDate = String(day)  + "/" + String(month) + "/" + String(year)
         let stringHour = String(hour) + "/" + String(minutes)
         
-        let params = ["pseudo": "aaaaa", "loc": ["latitude":la , "longitude":lo, "heure":stringHour, "date":stringDate] ] as Dictionary<String, AnyObject>
-        do {
-            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
-        } catch {
-            print(error)
-        }
         
-        let task = session.dataTaskWithRequest(request) { data, response, error in
-            guard data != nil else {
-                print("no data found: \(error)")
-                return
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let pseudo = defaults.stringForKey("pseudo"){
+            let params = ["pseudo": pseudo, "loc": ["latitude":la , "longitude":lo, "heure":stringHour, "date":stringDate] ] as Dictionary<String, AnyObject>
+            do {
+                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
+            } catch {
+                print(error)
             }
             
+            let task = session.dataTaskWithRequest(request) { data, response, error in
+                guard data != nil else {
+                    print("no data found: \(error)")
+                    return
+                }
+                
+            }
+            task.resume()
+            
         }
-        task.resume()
+        
+        
     }
     
     
