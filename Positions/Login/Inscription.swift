@@ -46,7 +46,31 @@ class Inscription: UIViewController {
         let MdP = MotPasse.text!
         let VerifPasse = MotPasse1.text!
         
-        
+        let request = NSMutableURLRequest(URL: NSURL(string: "http://92.170.201.10/Positions/utilisateur/inscription")!)
+        if (VerifMotPass(MdP, MotPasse1String: VerifPasse)){
+        EnregistrementUtilisateur.getDataAsynchronously(request, motPasse: MdP, mail: MailString, pseudo: PseudoString){data in
+            print("Asynchronously fetched \(data!.length) bytes")
+            //let dataString = String(data: NSData!, encoding: NSUTF8StringEncoding) as String?
+            
+            do{
+                let test = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
+                print(test)
+            } catch let error as NSError{
+                print(error)
+            }
+                
+            if(data!.length != 0){
+                self.Verif.text = "Inscription réussie"
+                print("Inscription réussie")
+                self.performSegueWithIdentifier("InscriptionToMap", sender: nil)
+            }
+            else{
+                print("Pseudo Deja existant")
+                self.Verif.text = "Pseudo Deja existant"
+            }
+        }
+        }
+        /*
         if (VerifMotPass(MdP, MotPasse1String: VerifPasse)){
             if(EnregistrementUtilisateur.enregistrement(MdP,
                                                         motPasse1: VerifPasse,
@@ -58,7 +82,7 @@ class Inscription: UIViewController {
             }else{
                 self.Verif.text = "Pseudo Deja existant"
             }
-        }
+        }*/
         
     }
     
