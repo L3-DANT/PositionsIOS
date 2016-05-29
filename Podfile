@@ -12,6 +12,6 @@ target 'Positions' do
     # Pods for testing
   end
 
-    pod 'libPusher', '1.6.1'
+  pod ‘PusherSwift’
 
 end
