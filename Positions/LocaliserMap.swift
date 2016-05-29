@@ -43,7 +43,7 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         locationManager.requestAlwaysAuthorization()//demande l'autorisation de localisation
         locationManager.startUpdatingLocation()//start
         openMap.showsUserLocation = true//affiche mon point
-        
+        /*
         let data = [Amis]()
         let totale = data.count-1
         print(totale)
@@ -51,7 +51,7 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
             let pos = data[index]
             let pin = PositionsAmis(cll: pos.position, nom: pos.pseudo)
             openMap.addAnnotation(pin)
-        }
+        }*/
         
         
     }

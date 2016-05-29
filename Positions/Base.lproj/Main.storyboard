@@ -381,6 +381,7 @@
                         <outlet property="MotPasse1" destination="tfM-fv-myh" id="rkc-Bh-fxi"/>
                         <outlet property="Pseudo" destination="lJd-xC-mNY" id="ml3-tf-nZW"/>
                         <outlet property="Verif" destination="aTC-ts-dnO" id="EpZ-Sj-k8O"/>
+                        <segue destination="fr4-yP-Py3" kind="show" identifier="InscriptionToMap" id="K6X-9R-IW7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qej-Qg-obG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -614,4 +615,7 @@
         <image name="SignOutIcon" width="64" height="64"/>
         <image name="UserNameIcon" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="K6X-9R-IW7"/>
+    </inferredMetricsTieBreakers>
 </document>

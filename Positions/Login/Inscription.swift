@@ -53,6 +53,7 @@ class Inscription: UIViewController {
                                                         mail: MailString,
                                                         pseudo: PseudoString)){
                 self.Verif.text = "Inscription réussie"
+                performSegueWithIdentifier("InscriptionToMap", sender: nil)
                 //on fait la transistion avec le segue
             }else{
                 self.Verif.text = "Pseudo Deja existant"
