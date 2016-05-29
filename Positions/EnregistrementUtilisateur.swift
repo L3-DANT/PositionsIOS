@@ -4,14 +4,16 @@ import Foundation
 
 class EnregistrementUtilisateur{
     
-    static func enregistrement(motPasse:String,motPasse1:String,mail:String, pseudo:String,verif:String) -> Bool {
+    static func enregistrement(motPasse:String,motPasse1:String,mail:String, pseudo:String) -> Bool {
         
         var retour:Bool
         
         retour = false 
         
-        let url = "http://92.170.201.10:8080/Positions/utilisateur/inscription"
+        let url = "http://92.170.201.10/Positions/utilisateur/inscription"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        
+        let semaphore = dispatch_semaphore_create(0)
         
         let session = NSURLSession.sharedSession()
         request.HTTPMethod = "POST"
@@ -24,47 +26,32 @@ class EnregistrementUtilisateur{
             print(error)
         }
         
+        
         let task = session.dataTaskWithRequest(request) { data, response, error in
             guard data != nil else {
                 // print("no data found: \(error)")
                 return
             }
+            
             do {
-                if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
-                    //   let success = json["pseudo"] as? String
-                    // print("Success: \(success)")
-                    //print((json["localisation:date"] as? String))
-                    // print(json)
-                    //verif = ""
-                    
-                    
-                    
-                } else {
-                    let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                    //print("Error could not parse JSON: \(jsonStr)")
-                    if (jsonStr == true){
-                        // print(jsonStr)
-                    }
-                    
-                    
-                }
+                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [String: AnyObject]
+                print("Utilisateur ajouté dans la base")
+                print(json)
+                retour = true
+                dispatch_semaphore_signal(semaphore) //on rend la requête synchrone
+                //sauvegarder token et pseudo ici
+                
+                
+                
             } catch let parseError {
+                print("Utilisateur déjà existant")
                 print(parseError)
-                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                //print(jsonStr)
                 
-                if((jsonStr ?? false) != nil){
-                    retour = false
-                }
-                
-                
-                if (jsonStr == true){
-                    retour = true
-                    //  print("Connexion reussie !");
-                }
             }
         }
         task.resume()
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+        print(retour)
         return retour
     }
     
