@@ -23,13 +23,6 @@ class Inscription: UIViewController {
     @IBOutlet weak var MotPasse1: UITextField!
 
     @IBOutlet weak var Verif: UILabel!
-    /*
-    var PseudoString:String!
-    var MailString:String!
-    var MotPasseString:String!
-    var Motpasse2String:String!
-    var VerifString:String!
-    */
     
     
    override func viewDidLoad() {
@@ -46,25 +39,37 @@ class Inscription: UIViewController {
         let MdP = MotPasse.text!
         let VerifPasse = MotPasse1.text!
         
-        var transition = false
         
         let request = NSMutableURLRequest(URL: NSURL(string: "http://92.170.201.10/Positions/utilisateur/inscription")!)
         if (VerifMotPass(MdP, MotPasse1String: VerifPasse)){
         EnregistrementUtilisateur.getDataAsynchronously(request, motPasse: MdP, mail: MailString, pseudo: PseudoString){data in
             print("Asynchronously fetched \(data!.length) bytes")
-            //let dataString = String(data: NSData!, encoding: NSUTF8StringEncoding) as String?
+            
+            var pseudo = ""
+            var token = ""
             
             do{
-                let test = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
-                print(test)
+                if let user = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary{
+                    pseudo = (user["pseudo"] as? String)!
+                    token = (user["token"] as? String)!
+                }
                 
             } catch let error as NSError{
                 print(error)
             }
-                
+            
+            print("token after inscription : " + token)
+            
             if(data!.length != 0){
                 self.Verif.text = "Inscription réussie"
                 print("Inscription réussie")
+                
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setValue(pseudo, forKey: "pseudo")
+                defaults.setValue(token, forKey: "token")
+                defaults.synchronize()
+                print("Sauvegarde utilisateur")
+                
                 dispatch_async(dispatch_get_main_queue(), {
                     self.performSegueWithIdentifier("InscriptionToMap", sender: self)
                 })
@@ -76,20 +81,6 @@ class Inscription: UIViewController {
         }
         }
         
-        
-        /*
-        if (VerifMotPass(MdP, MotPasse1String: VerifPasse)){
-            if(EnregistrementUtilisateur.enregistrement(MdP,
-                                                        motPasse1: VerifPasse,
-                                                        mail: MailString,
-                                                        pseudo: PseudoString)){
-                self.Verif.text = "Inscription réussie"
-                performSegueWithIdentifier("InscriptionToMap", sender: nil)
-                //on fait la transistion avec le segue
-            }else{
-                self.Verif.text = "Pseudo Deja existant"
-            }
-        }*/
         
     }
     

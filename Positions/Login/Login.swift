@@ -24,6 +24,11 @@ class Login: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let token = defaults.stringForKey("token"){
+            print("connexion " + token)
+        
+        }
         passwordViewConfig()
       //  loginViewConfig()
         
