@@ -120,50 +120,46 @@ class Login: UITableViewController {
             
             let url = "http://92.170.201.10/Positions/utilisateur/connexion"
             let request = NSMutableURLRequest(URL: NSURL(string: url)!)
-            
-            let session = NSURLSession.sharedSession()
-            request.HTTPMethod = "POST"
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-            
-            let params = ["pseudo":pseudo, "motDePasse":motDePasse] as Dictionary<String, String>
-            do {
-                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
-            } catch {
-                print(error)
-            }
-            
-            let task = session.dataTaskWithRequest(request) { data, response, error in
-                guard data != nil else {
-                    print("no data found: \(error)")
-                    return
-                }
-                do {
-                    if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
-                        let success = json["pseudo"] as? String
-                        print(json)
-                        print("Success: \(success)")
-                        print((json["localisation:date"] as? String))
-                        
-                    } else {
-                        let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                            self.presentViewController(errorAlert, animated: true, completion: nil)
-                     
-                        if (jsonStr == true){
-                            self.performSegueWithIdentifier("LocaliserMap", sender: self)
+            Connexion.getConnexionAsynchronously(request, pseudo: pseudo, motPasse: motDePasse){data in
+                print("Asynchronously fetched \(data!.length) bytes")
+                
+                var pseudo = ""
+                var token = ""
+                
+                do{
+                    if let user = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary{
+                        print(user)
+                        if(user["pseudo"] != nil && user["token"] != nil){
+                            pseudo = (user["pseudo"] as? String)!
+                            token = (user["token"] as? String)!
                         }
                     }
-                } catch let parseError {
-                    print(parseError)
-                    let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                        self.presentViewController(errorAlert, animated: true, completion: nil)
-                      
-                    if (jsonStr == true){
-                        self.performSegueWithIdentifier("LocaliserMap", sender: self)
-                    }
+                    
+                } catch let error as NSError{
+                    print(error)
+                }
+                
+                print("token after connexion : " + token)
+                
+                if(data!.length != 0){
+                    print("Connexion réussie")
+                    
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    defaults.setValue(pseudo, forKey: "pseudo")
+                    defaults.setValue(token, forKey: "token")
+                    defaults.synchronize()
+                    print("Sauvegarde utilisateur")
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.performSegueWithIdentifier("ConnexionToMap", sender: self)
+                    })
+                }
+                else{
+                    print("Mauvais pseudo ou mot de passe")
+                    //self.Verif.text = "Mauvais pseudo ou mot de passe"
                 }
             }
-            task.resume()
+            
         }
     }
     
