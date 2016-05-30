@@ -45,8 +45,8 @@ class MesInvitations: UITableViewController {
     }
     
     func recupererListeInvitation(pseudo:String) -> Array<String>{
-        
-        let url = "http://92.170.201.10:8080/Positions/invitation/recupInvits"
+        let url = "http://134.157.24.6:8080/Positions/invitation/recupInvits"
+        //"http://92.170.201.10:8080/Positions/invitation/recupInvits"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         
         let session = NSURLSession.sharedSession()

@@ -10,25 +10,25 @@ import Foundation
 
 
 class Recherche{
-    /*
-    static func findAsynchronously(request: NSMutableURLRequest, pseudo:String){
+    
+    static func findAsynchronously(request: NSMutableURLRequest, completion: NSData? -> ()){
         
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        let params = ["pseudo":pseudo] as Dictionary<String, String>
+        //let params = ["pseudo":pseudo] as Dictionary<String, String>
+        let params = []
         do {
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
         } catch {
             print(error)
         }
         
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) in
-            
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) in            
             completion(data)
         })
         task.resume()
         
-    }*/
+    }
 
 }

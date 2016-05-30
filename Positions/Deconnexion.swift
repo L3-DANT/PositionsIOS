@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import UIKit
 
-class Deconnexion{
+class Deconnexion: UIViewController{
     
     
-    
+    override func viewDidLoad() {
+        
+    }
 }
