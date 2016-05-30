@@ -14,6 +14,8 @@
 		856A39EF1CE74A6A0095B06B /* MesInvitations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856A39EE1CE74A6A0095B06B /* MesInvitations.swift */; };
 		856A39F11CE74A800095B06B /* MesInvitationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856A39F01CE74A800095B06B /* MesInvitationsCell.swift */; };
 		856BFE371CFB7C7D0027FAB5 /* PusherSub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856BFE361CFB7C7D0027FAB5 /* PusherSub.swift */; };
+		856BFE3B1CFC2EAF0027FAB5 /* Recherche.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856BFE3A1CFC2EAF0027FAB5 /* Recherche.swift */; };
+		856BFE3D1CFC36CD0027FAB5 /* ListeRecherche.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856BFE3C1CFC36CD0027FAB5 /* ListeRecherche.swift */; };
 		857C94951CE09BE700BC0101 /* LocaliserMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857C94941CE09BE700BC0101 /* LocaliserMap.swift */; };
 		85D259D81CE3322F000F2D45 /* EnregistrementUtilisateur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D259D71CE3322F000F2D45 /* EnregistrementUtilisateur.swift */; };
 		85D259DC1CE36C95000F2D45 /* Connexion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D259DB1CE36C95000F2D45 /* Connexion.swift */; };
@@ -52,6 +54,8 @@
 		856A39EE1CE74A6A0095B06B /* MesInvitations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MesInvitations.swift; sourceTree = "<group>"; };
 		856A39F01CE74A800095B06B /* MesInvitationsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MesInvitationsCell.swift; sourceTree = "<group>"; };
 		856BFE361CFB7C7D0027FAB5 /* PusherSub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PusherSub.swift; sourceTree = "<group>"; };
+		856BFE3A1CFC2EAF0027FAB5 /* Recherche.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recherche.swift; sourceTree = "<group>"; };
+		856BFE3C1CFC36CD0027FAB5 /* ListeRecherche.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListeRecherche.swift; sourceTree = "<group>"; };
 		857C94941CE09BE700BC0101 /* LocaliserMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaliserMap.swift; sourceTree = "<group>"; };
 		85D259D71CE3322F000F2D45 /* EnregistrementUtilisateur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnregistrementUtilisateur.swift; sourceTree = "<group>"; };
 		85D259DB1CE36C95000F2D45 /* Connexion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connexion.swift; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 				85D259D71CE3322F000F2D45 /* EnregistrementUtilisateur.swift */,
 				85D259DB1CE36C95000F2D45 /* Connexion.swift */,
 				856BFE361CFB7C7D0027FAB5 /* PusherSub.swift */,
+				856BFE3A1CFC2EAF0027FAB5 /* Recherche.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 				85D25A1F1CE726EE000F2D45 /* MesAmisCell.swift */,
 				856A39EE1CE74A6A0095B06B /* MesInvitations.swift */,
 				856A39F01CE74A800095B06B /* MesInvitationsCell.swift */,
+				856BFE3C1CFC36CD0027FAB5 /* ListeRecherche.swift */,
 			);
 			name = Fonctionnalites;
 			sourceTree = "<group>";
@@ -443,10 +449,12 @@
 				85D25A1A1CE71EA0000F2D45 /* Deconnexion.swift in Sources */,
 				85D25A201CE726EE000F2D45 /* MesAmisCell.swift in Sources */,
 				85D25A1C1CE7244D000F2D45 /* MesAmis.swift in Sources */,
+				856BFE3B1CFC2EAF0027FAB5 /* Recherche.swift in Sources */,
 				852E25891CEB969800386815 /* testDB.swift in Sources */,
 				856A39EF1CE74A6A0095B06B /* MesInvitations.swift in Sources */,
 				85D259DC1CE36C95000F2D45 /* Connexion.swift in Sources */,
 				85D25A221CE73FF7000F2D45 /* Invitation.swift in Sources */,
+				856BFE3D1CFC36CD0027FAB5 /* ListeRecherche.swift in Sources */,
 				D59636FC1CB667B3008C3202 /* Localisation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

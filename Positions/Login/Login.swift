@@ -106,8 +106,8 @@ class Login: UITableViewController {
             "Le mot de passe est obligatoire!", preferredStyle: UIAlertControllerStyle.Alert)
         pwdAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
         
-        let errorAlert = UIAlertController(title: "Error", message:
-            "Connexion error!", preferredStyle: UIAlertControllerStyle.Alert)
+        let errorAlert = UIAlertController(title: "Connexion", message:
+            "Mot de passe ou pseudo incorrect!", preferredStyle: UIAlertControllerStyle.Alert)
         errorAlert.addAction(UIAlertAction(title: "Retour", style: UIAlertActionStyle.Default,handler: nil))
 
     
@@ -158,7 +158,9 @@ class Login: UITableViewController {
                 }
                 else{
                     print("Mauvais pseudo ou mot de passe")
-                    //self.Verif.text = "Mauvais pseudo ou mot de passe"
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.presentViewController(errorAlert, animated: true, completion: nil)
+                    })
                 }
             }
             

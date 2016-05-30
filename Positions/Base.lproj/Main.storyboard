@@ -269,7 +269,14 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Map" id="Fgo-Gw-qky"/>
+                    <navigationItem key="navigationItem" title="Map" id="Fgo-Gw-qky">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Rs5-Hr-M8S">
+                            <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="3nX-pK-kiw">
+                                <rect key="frame" x="345" y="6" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="openMap" destination="veU-jP-O2M" id="wm1-5C-Tw4"/>
                     </connections>
@@ -448,7 +455,7 @@
             </objects>
             <point key="canvasLocation" x="1210" y="2272"/>
         </scene>
-        <!--Mes invitations - demande en cours-->
+        <!--Mes invitations-->
         <scene sceneID="lSS-hD-3jI">
             <objects>
                 <tableViewController id="UeT-mZ-3gB" customClass="MesInvitations" customModule="Positions" customModuleProvider="target" sceneMemberID="viewController">
@@ -456,6 +463,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sxf-8D-34A">
+                            <rect key="frame" x="0.0" y="167" width="414" height="56"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="InvitationIcon"/>
+                            <connections>
+                                <segue destination="dQc-Xv-mcM" kind="show" id="s1x-Ec-UH5"/>
+                            </connections>
+                        </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellule" rowHeight="75" id="RKx-sq-HCu" customClass="MesInvitationsCell" customModule="Positions" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="414" height="75"/>
@@ -516,12 +531,48 @@
                             <outlet property="delegate" destination="UeT-mZ-3gB" id="HxY-AY-lKa"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Invitation" image="InvitationIcon" id="RkE-kE-hpW"/>
-                    <navigationItem key="navigationItem" title="Mes invitations - demande en cours" id="X2l-Ws-17Z"/>
+                    <tabBarItem key="tabBarItem" title="Invitation" image="invitation" id="RkE-kE-hpW"/>
+                    <navigationItem key="navigationItem" title="Mes invitations" id="X2l-Ws-17Z"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Xe-k3-oMT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1033" y="3159"/>
+        </scene>
+        <!--Liste Recherche-->
+        <scene sceneID="oP1-eN-HM4">
+            <objects>
+                <tableViewController id="dQc-Xv-mcM" customClass="ListeRecherche" customModule="Positions" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9MP-OL-ngy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="CqR-Cm-wfq">
+                            <rect key="frame" x="0.0" y="64" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="w3g-1R-OCS">
+                                <rect key="frame" x="0.0" y="136" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w3g-1R-OCS" id="ObD-Kp-r3K">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dQc-Xv-mcM" id="K8X-XZ-X6v"/>
+                            <outlet property="delegate" destination="dQc-Xv-mcM" id="CqY-VT-2gA"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="barreRecherche" destination="CqR-Cm-wfq" id="FZg-6u-Vfn"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hep-h5-Qf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1639" y="3140"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="SzO-XM-nAl">
@@ -602,7 +653,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Paramètre" image="ParametreIcon" id="U5h-mW-yyp"/>
-                    <navigationItem key="navigationItem" title="Paramètre" id="PJb-KZ-U6d"/>
+                    <navigationItem key="navigationItem" title="Paramètres" id="PJb-KZ-U6d"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rm2-J2-wKY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -621,6 +672,7 @@
         <image name="RefusIcon" width="32" height="32"/>
         <image name="SignOutIcon" width="64" height="64"/>
         <image name="UserNameIcon" width="24" height="24"/>
+        <image name="invitation" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="yom-pe-hgd"/>
