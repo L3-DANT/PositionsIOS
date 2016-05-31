@@ -19,7 +19,6 @@ class ListeRecherche : UIViewController, UITableViewDelegate, UISearchBarDelegat
     var searchActive : Bool = false
     var dataTable:[String] = []
     var filtered:[String] = []
-    var test = ["San Francisco","New York","San Jose","Chicago","Los Angeles","Austin","Seattle"]
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -51,35 +50,31 @@ class ListeRecherche : UIViewController, UITableViewDelegate, UISearchBarDelegat
     {
         
         //"http://92.170.201.10/Positions/utilisateur/recherche"
-        //http://134.157.122.100:8080/Positions/utilisateur/recherche
-        let request = NSMutableURLRequest(URL: NSURL(string: "http://92.170.201.10/Positions/utilisateur/recherche?prefix="+searchText)!)
+        //"http://92.170.201.10/Positions/utilisateur/recherche?prefix="+searchText
+        //let url = "http://134.157.121.10:8080/Positions/utilisateur/recherche?prefix="+searchText
+        let request = NSMutableURLRequest(URL: NSURL(string: "http://134.157.121.10:8080/Positions/utilisateur/recherche?prefix="+searchText)!)
         
             Recherche.findAsynchronously(request){data in
                 print("Asynchronously fetched \(data!.length) bytes")
                 //self.dataTable = []
-                var pseudo = ""
-                var token = ""
+                
                 
                 do{
-                    if let listUser = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSArray{
+                   if let listUser = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSArray{
                         self.dataTable.removeAll()
                         print(listUser.count)
                         for(var i = 0; i<listUser.count; i++){
                             self.dataTable.append(listUser[i] as! String)
                         }
-                        print(self.dataTable)
-                        //self.dataTable = listUser as! [String]
-                        /*pseudo = (user["pseudo"] as? String)!
-                        token = (user["token"] as? String)!*/
-                        self.table.reloadData()
-                    }
                     
+                        print(self.dataTable)
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.table.reloadData()
+                        })
+                    }
                 } catch let error as NSError{
-                    print(error)
+                        print(error)
                 }
-                
-                print("token after inscription : " + token)
- 
             }
         
         filtered = dataTable.filter({ (text) -> Bool in
@@ -93,7 +88,7 @@ class ListeRecherche : UIViewController, UITableViewDelegate, UISearchBarDelegat
             searchActive = true;
         }
         self.table.reloadData()
-        
+        //print(self.dataTable)
 
     }
     

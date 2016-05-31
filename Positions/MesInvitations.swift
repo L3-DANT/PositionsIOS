@@ -10,7 +10,7 @@ import UIKit
 
 class MesInvitations: UITableViewController {
     
-    let data = [Invitation]()
+    var data = [Invitation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class MesInvitations: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return data.count
     }
     
@@ -36,20 +36,22 @@ class MesInvitations: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cellule", forIndexPath: indexPath) as! MesInvitationsCell
         
-        //let entre = data.donnee[indexPath.row]
+        let entre = data[indexPath.row]
         
-        //cell.nomCell.text = entre.pseudo
+        cell.nomCell.text = entre.concerne
+        cell.dateCell.text = entre.date
         
         
         return cell
     }
     
-    func recupererListeInvitation() -> Array<Invitation>{
+    func recupererListeInvitation(){
         //let url = "http://134.157.24.6:8080/Positions/invitation/recupInvits"
         var url = ""
         let defaults = NSUserDefaults.standardUserDefaults()
-        var res = []
+        
         if let pseudo = defaults.stringForKey("pseudo"){
+            //url = "http://134.157.121.10:8080/Positions/invitation/recupInvits?pseudo=" + pseudo
             url = "http://92.170.201.10/Positions/invitation/recupInvits?pseudo=" + pseudo
         }
         print(url)
@@ -60,8 +62,16 @@ class MesInvitations: UITableViewController {
             
             do{
                 if let answer = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSArray{
-                    print(answer[0]["accept"])
-                    
+                    for(var i = 0; i<answer.count; i++){
+                        let demandeur = answer[i]["demandeur"] as! String
+                        let concerne = answer[i]["concerne"] as! String
+                        let date = answer[i]["date"] as! String
+                        let accept = answer[i]["accept"] as! String
+                        let invit = Invitation(demandeur: demandeur, concerne: concerne, date: date, accept: accept)
+                        self.data.append(invit)
+                        print(demandeur + " " + concerne + " " + accept + " " + date )
+                    }
+                    print(self.data)
                 }
                 
             } catch let error as NSError{
@@ -70,6 +80,6 @@ class MesInvitations: UITableViewController {
             
             
         }
-        return res as! Array<Invitation>
+        //print(self.data[0])
     }
 }

@@ -13,21 +13,21 @@ import Foundation
 class Invitation{
         var demandeur: String
         var concerne: String
-        var date: NSDate
+        var date: String
         var accept: String
         
         init(){
             self.demandeur = ""
             self.concerne = ""
-            self.date = NSDate()
+            self.date = ""
             self.accept = "EN_ATTENTE"
         }
         
-        init(demandeur:String, concerne: String){
+        init(demandeur:String, concerne: String, date: String, accept: String){
             self.demandeur = demandeur
             self.concerne = concerne
-            self.date = NSDate()
-            self.accept = "EN_ATTENTE"
+            self.date = date
+            self.accept = accept
         }
         
         func setDemandeur(demandeur:String){
@@ -37,7 +37,7 @@ class Invitation{
         func setConcerne(concerne:String){
             self.concerne = concerne
         }
-        func setDate(date:NSDate){
+        func setDate(date:String){
             self.date = date
         }
         func setAccept(accept:String){

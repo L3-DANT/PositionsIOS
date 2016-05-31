@@ -118,7 +118,7 @@ class Login: UITableViewController {
             self.presentViewController(pwdAlert, animated: true, completion: nil)
         } else {
             let url = "http://92.170.201.10/Positions/utilisateur/connexion"
-            //let url = "http://134.157.122.100:8080/Positions/utilisateur/connexion"
+            //let url = "http://134.157.121.10:8080/Positions/utilisateur/connexion"
             let request = NSMutableURLRequest(URL: NSURL(string: url)!)
             Connexion.getConnexionAsynchronously(request, pseudo: pseudo, motPasse: motDePasse){data in
                 print("Asynchronously fetched \(data!.length) bytes")

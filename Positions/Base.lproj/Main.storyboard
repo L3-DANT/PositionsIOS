@@ -471,6 +471,16 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="74"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqK-ot-1Hk">
+                                            <rect key="frame" x="8" y="0.0" width="290" height="38"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="290" id="1O5-DG-K5I"/>
+                                                <constraint firstAttribute="height" constant="38" id="4TO-U8-dSa"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qh3-X4-vRb">
                                             <rect key="frame" x="290" y="19" width="32" height="32"/>
                                             <constraints>
@@ -479,6 +489,7 @@
                                             </constraints>
                                             <state key="normal" backgroundImage="AcceptIcon"/>
                                             <connections>
+                                                <action selector="accept:" destination="RKx-sq-HCu" eventType="touchUpInside" id="ArX-2a-kgH"/>
                                                 <action selector="acceptInvitation:" destination="RKx-sq-HCu" eventType="touchUpInside" id="S1r-yL-Jgv"/>
                                             </connections>
                                         </button>
@@ -490,30 +501,36 @@
                                             </constraints>
                                             <state key="normal" backgroundImage="RefusIcon"/>
                                             <connections>
+                                                <action selector="deny:" destination="RKx-sq-HCu" eventType="touchUpInside" id="RK7-SS-K0z"/>
                                                 <action selector="refuseInvitation:" destination="RKx-sq-HCu" eventType="touchUpInside" id="Ri3-4w-Veq"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqK-ot-1Hk">
-                                            <rect key="frame" x="8" y="13" width="290" height="40"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dZ-x1-RY7">
+                                            <rect key="frame" x="8" y="38" width="274" height="28"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="290" id="2Lj-2G-fug"/>
-                                                <constraint firstAttribute="height" constant="40" id="lTB-i5-jee"/>
+                                                <constraint firstAttribute="width" constant="274" id="ZRH-7L-YHf"/>
+                                                <constraint firstAttribute="height" constant="28" id="cyh-UW-tKg"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="qh3-X4-vRb" firstAttribute="top" secondItem="oHr-01-AfS" secondAttribute="topMargin" constant="11" id="45X-Em-ia1"/>
-                                        <constraint firstItem="cqK-ot-1Hk" firstAttribute="top" secondItem="oHr-01-AfS" secondAttribute="topMargin" constant="5" id="QEs-fU-dFe"/>
-                                        <constraint firstItem="cqK-ot-1Hk" firstAttribute="leading" secondItem="oHr-01-AfS" secondAttribute="leadingMargin" id="Qik-cZ-EfQ"/>
+                                        <constraint firstItem="7dZ-x1-RY7" firstAttribute="top" secondItem="cqK-ot-1Hk" secondAttribute="bottom" id="AIv-7P-6q6"/>
+                                        <constraint firstItem="cqK-ot-1Hk" firstAttribute="leading" secondItem="oHr-01-AfS" secondAttribute="leadingMargin" id="SXf-bQ-PYz"/>
+                                        <constraint firstItem="sQy-aI-HZN" firstAttribute="leading" secondItem="cqK-ot-1Hk" secondAttribute="trailing" constant="60" id="Ypc-w4-FPF"/>
+                                        <constraint firstItem="7dZ-x1-RY7" firstAttribute="leading" secondItem="oHr-01-AfS" secondAttribute="leadingMargin" id="kAt-cV-q6j"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="sQy-aI-HZN" secondAttribute="trailing" constant="16" id="n59-dv-qvK"/>
                                         <constraint firstItem="sQy-aI-HZN" firstAttribute="leading" secondItem="qh3-X4-vRb" secondAttribute="trailing" constant="36" id="rKl-Pr-uzY"/>
+                                        <constraint firstItem="cqK-ot-1Hk" firstAttribute="top" secondItem="oHr-01-AfS" secondAttribute="topMargin" constant="-8" id="xgo-8a-VMe"/>
                                         <constraint firstItem="sQy-aI-HZN" firstAttribute="top" secondItem="oHr-01-AfS" secondAttribute="topMargin" constant="9" id="yCH-Hu-X5i"/>
+                                        <constraint firstItem="qh3-X4-vRb" firstAttribute="leading" secondItem="7dZ-x1-RY7" secondAttribute="trailing" constant="8" id="zge-na-H5D"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="dateCell" destination="7dZ-x1-RY7" id="zB8-x0-5fB"/>
                                     <outlet property="nomCell" destination="cqK-ot-1Hk" id="APp-ue-I6V"/>
                                 </connections>
                             </tableViewCell>
