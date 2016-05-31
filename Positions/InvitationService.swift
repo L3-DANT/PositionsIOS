@@ -9,8 +9,8 @@
 import Foundation
 
 
-class AddInvitation{
-    
+class InvitationService{
+    //meme methode pour add invit et get
     static func send(request: NSMutableURLRequest, completion: NSData? -> ()){
         
         request.HTTPMethod = "POST"
@@ -30,5 +30,7 @@ class AddInvitation{
         task.resume()
         
     }
+    
+    
     
 }

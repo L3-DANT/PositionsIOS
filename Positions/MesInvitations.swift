@@ -14,7 +14,7 @@ class MesInvitations: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        recupererListeInvitation()
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,72 +44,32 @@ class MesInvitations: UITableViewController {
         return cell
     }
     
-    func recupererListeInvitation(pseudo:String) -> Array<String>{
+    func recupererListeInvitation() -> Array<Invitation>{
         //let url = "http://134.157.24.6:8080/Positions/invitation/recupInvits"
-        let url = "http://92.170.201.10:8080/Positions/invitation/recupInvits"
-        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        
-        let session = NSURLSession.sharedSession()
-        request.HTTPMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        let params = ["pseudo":pseudo]
-        do {
-            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
-        } catch {
-            print(error)
+        var url = ""
+        let defaults = NSUserDefaults.standardUserDefaults()
+        var res = []
+        if let pseudo = defaults.stringForKey("pseudo"){
+            url = "http://92.170.201.10/Positions/invitation/recupInvits?pseudo=" + pseudo
         }
-        
-        let res = [String]()
-        
-        
-        let task = session.dataTaskWithRequest(request) { data, response, error in
-            guard data != nil else {
-                print("no data found: \(error)")
-                return
-            }
-            let invit = Invitation()
-            do {
-                if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
-                    print(json)
+        print(url)
+        //let url = "http://134.157.122.100:8080/Positions/utilisateur/connexion"
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        InvitationService.send(request){data in
+            print("Asynchronously fetched \(data!.length) bytes")
+            
+            do{
+                if let answer = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSArray{
+                    print(answer[0]["accept"])
                     
-                    if let invitations = json as? [[String: AnyObject]]{
-                        for invitation in invitations{
-                            if let demandeur = invitation["demandeur"] as? String{
-                                invit.setDemandeur(demandeur)
-                            }
-                            if let concerne = invitation["concerne"] as? String{
-                                invit.setDemandeur(concerne)
-                            }
-                            if let date = invitation["date"] as? NSDate{
-                                invit.setDate(date)
-                            }
-                            if let accept = invitation["accept"] as? String{
-                                invit.setDemandeur(accept)
-                            }
-                        }
-                        
-                    }
                 }
                 
-                /*
-                 //let success = json["success"] as? Invitation
-                 for index: [key: AnyObject, value : AnyObject] in json{
-                 let pseudo = index["pseudo"] as? String
-                 let donnee = Invitation(pseudo)
-                 }
-                 //print("Success: \(success)")
-                 } else {
-                 let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                 print("Error could not parse JSON: \(jsonStr)")
-                 }*/
-            } catch let parseError {
-                print(parseError)
-                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                print("Error could not parse JSON: '\(jsonStr)'")
+            } catch let error as NSError{
+                print(error)
             }
+            
+            
         }
-        task.resume()
-        return res
+        return res as! Array<Invitation>
     }
 }

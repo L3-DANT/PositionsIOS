@@ -23,7 +23,7 @@ class ListeRechercheCell: UITableViewCell{
         print(url)
         //let url = "http://134.157.122.100:8080/Positions/utilisateur/connexion"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        AddInvitation.send(request){data in
+        InvitationService.send(request){data in
             print("Asynchronously fetched \(data!.length) bytes")
        
             do{
