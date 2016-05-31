@@ -18,8 +18,8 @@ class ListeRechercheCell: UITableViewCell{
         let defaults = NSUserDefaults.standardUserDefaults()
         var url = ""
         if let pseudo = defaults.stringForKey("pseudo"){
-            url = "http://134.157.121.10:8080/Positions/invitation/inviteFriend?demandeur=" + pseudo + "&concerne=" + userName.text!
-            //url = "http://92.170.201.10/Positions/invitation/inviteFriend?demandeur=" + pseudo + "&concerne=" + userName.text!
+            //url = "http://134.157.121.10:8080/Positions/invitation/inviteFriend?demandeur=" + pseudo + "&concerne=" + userName.text!
+            url = "http://92.170.201.10/Positions/invitation/inviteFriend?demandeur=" + pseudo + "&concerne=" + userName.text!
         }
         print(url)
         //let url = "http://134.157.122.100:8080/Positions/utilisateur/connexion"

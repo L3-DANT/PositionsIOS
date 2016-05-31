@@ -52,7 +52,7 @@ class ListeRecherche : UIViewController, UITableViewDelegate, UISearchBarDelegat
         //"http://92.170.201.10/Positions/utilisateur/recherche"
         //"http://92.170.201.10/Positions/utilisateur/recherche?prefix="+searchText
         //let url = "http://134.157.121.10:8080/Positions/utilisateur/recherche?prefix="+searchText
-        let request = NSMutableURLRequest(URL: NSURL(string: "http://134.157.121.10:8080/Positions/utilisateur/recherche?prefix="+searchText)!)
+        let request = NSMutableURLRequest(URL: NSURL(string: "http://92.170.201.10:8080/Positions/utilisateur/recherche?prefix="+searchText)!)
         
             Recherche.findAsynchronously(request){data in
                 print("Asynchronously fetched \(data!.length) bytes")
@@ -63,7 +63,8 @@ class ListeRecherche : UIViewController, UITableViewDelegate, UISearchBarDelegat
                    if let listUser = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSArray{
                         self.dataTable.removeAll()
                         print(listUser.count)
-                        for(var i = 0; i<listUser.count; i++){
+                    
+                        for i in 0...listUser.count-1{
                             self.dataTable.append(listUser[i] as! String)
                         }
                     

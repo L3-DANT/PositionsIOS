@@ -56,8 +56,8 @@ class MesAmis: UITableViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         
         if let pseudo = defaults.stringForKey("pseudo"){
-            url = "http://134.157.121.10:8080/Positions/utilisateur/getFriends?pseudo=" + pseudo
-            //url = "http://92.170.201.10/Positions/invitation/recupInvits?pseudo=" + pseudo
+            //url = "http://134.157.121.10:8080/Positions/utilisateur/getFriends?pseudo=" + pseudo
+            url = "http://92.170.201.10/Positions/utilisateur/getFriends?pseudo=" + pseudo
         }
         print(url)
         //let url = "http://134.157.122.100:8080/Positions/utilisateur/connexion"
@@ -67,7 +67,7 @@ class MesAmis: UITableViewController {
             
             do{
                 if let listeAmis = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSArray{
-                    
+                    if listeAmis.count > 0{
                     for i in 0...listeAmis.count-1{
                         let pseudo = listeAmis[i]["pseudo"] as! String
                         let longitude = listeAmis[i]["loc"]!!["longitude"] as! Float
@@ -80,6 +80,7 @@ class MesAmis: UITableViewController {
                         print(amis)
                         self.liste.append(amis)
                         
+                    }
                     }
                     //print(data[i].demandeur + " " + data[i].concerne + " " + data[i].accept + " " + data[i].date )
                     print(self.liste)

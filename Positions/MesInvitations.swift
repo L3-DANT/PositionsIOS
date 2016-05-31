@@ -12,6 +12,8 @@ class MesInvitations: UITableViewController {
     
     var liste = [Invitation]()
     
+    var conteur = 0
+    
     @IBOutlet var table: UITableView!
     
     override func viewDidLoad() {
@@ -19,7 +21,7 @@ class MesInvitations: UITableViewController {
         super.viewDidLoad()
         
         self.table.reloadData()
-        
+        tabBarController?.tabBar.items?[1].badgeValue = String(conteur)
         
         
     }
@@ -65,8 +67,8 @@ class MesInvitations: UITableViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         
         if let pseudo = defaults.stringForKey("pseudo"){
-            url = "http://134.157.121.10:8080/Positions/invitation/recupInvits?pseudo=" + pseudo
-            //url = "http://92.170.201.10/Positions/invitation/recupInvits?pseudo=" + pseudo
+            //url = "http://134.157.121.10:8080/Positions/invitation/recupInvits?pseudo=" + pseudo
+            url = "http://92.170.201.10/Positions/invitation/recupInvits?pseudo=" + pseudo
         }
         print(url)
         //let url = "http://134.157.122.100:8080/Positions/utilisateur/connexion"
@@ -88,6 +90,7 @@ class MesInvitations: UITableViewController {
                             if let pseudo = defaults.stringForKey("pseudo"){
                                 if demandeur != pseudo{
                                     self.liste.append(invit as Invitation!)
+                                    self.conteur = self.conteur + 1
                                 }
                             }
 

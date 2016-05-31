@@ -53,6 +53,7 @@ class PusherSub{
                 print(data!["loc"] as! NSDictionary)
                 print(data!["loc"]!!["latitude"])
                 
+                
             })
         }
         //add les updates dans la base

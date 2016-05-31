@@ -87,8 +87,8 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         let defaults = NSUserDefaults.standardUserDefaults()
         
         if let pseudo = defaults.stringForKey("pseudo"){
-            url = "http://134.157.121.10:8080/Positions/utilisateur/getFriends?pseudo=" + pseudo
-            //url = "http://92.170.201.10/Positions/invitation/recupInvits?pseudo=" + pseudo
+            //url = "http://134.157.121.10:8080/Positions/utilisateur/getFriends?pseudo=" + pseudo
+            url = "http://92.170.201.10/Positions/utilisateur/getFriends?pseudo=" + pseudo
         }
         print(url)
         //let url = "http://134.157.122.100:8080/Positions/utilisateur/connexion"
@@ -98,7 +98,8 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
             
             do{
                 if let listeAmis = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSArray{
-                    
+                    print(listeAmis.count)
+                    if listeAmis.count > 0{
                     for i in 0...listeAmis.count-1{
                         let pseudo = listeAmis[i]["pseudo"] as! String
                         let longitude = listeAmis[i]["loc"]!!["longitude"] as! Float
@@ -110,8 +111,10 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
                         print(pseudo + ":" + String(local.latitude) + ";" + String(local.longitude))
                         print(amis)
                         self.liste.append(amis)
-                        
+                        }
                     }
+                    
+                    
                     
                     //print(data[i].demandeur + " " + data[i].concerne + " " + data[i].accept + " " + data[i].date )
                     print(self.liste)
@@ -150,7 +153,6 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         })
         
         let totale = liste.count-1
-        print("toooootttttaalll: "+String(totale))
         if totale > 0{
             for index in 0...totale{
                 let pos = liste[index]
@@ -177,10 +179,10 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
     
     
     func envoiLocation(la:Double, lo:Double){
-        //let url = "http://92.170.201.10/Positions/localisation/updateLoc"
+        let url = "http://92.170.201.10/Positions/localisation/updateLoc"
         
         
-        let url = "http://134.157.121.10:8080/Positions/localisation/updateLoc"
+        //let url = "http://134.157.121.10:8080/Positions/localisation/updateLoc"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         
         let session = NSURLSession.sharedSession()
