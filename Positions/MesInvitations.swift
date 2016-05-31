@@ -12,7 +12,7 @@ class MesInvitations: UITableViewController {
     
     var liste = [Invitation]()
     
-    var conteur = 0
+    
     
     @IBOutlet var table: UITableView!
     
@@ -21,10 +21,12 @@ class MesInvitations: UITableViewController {
         super.viewDidLoad()
         
         self.table.reloadData()
-        tabBarController?.tabBar.items?[1].badgeValue = String(conteur)
+        
         
         
     }
+    
+    var conteur = 0
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -91,6 +93,8 @@ class MesInvitations: UITableViewController {
                                 if demandeur != pseudo{
                                     self.liste.append(invit as Invitation!)
                                     self.conteur = self.conteur + 1
+                                    print("Affffffiche : ", self.conteur)
+                                    self.tabBarController?.tabBar.items?[1].badgeValue = String(self.conteur)
                                 }
                             }
 
@@ -99,18 +103,21 @@ class MesInvitations: UITableViewController {
                         })
                         //print(data[i].demandeur + " " + data[i].concerne + " " + data[i].accept + " " + data[i].date )
                     }
+                    
                     print(self.liste)
                     dispatch_async(dispatch_get_main_queue(), {
                         self.table.reloadData()
                     })
                 }
-                
+               
             } catch let error as NSError{
                 print(error)
             }
             
-            
+           
+
         }
+        
         //print(self.data[0])
     }
 }
