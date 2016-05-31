@@ -18,11 +18,13 @@ class MesInvitationsCell: UITableViewCell {
         let defaults = NSUserDefaults.standardUserDefaults()
         var url = ""
         if let pseudo = defaults.stringForKey("pseudo"){
+
             url = "http://134.157.121.10:8080/Positions/invitation/decision?b=true&demandeur=" + nomCell.text! + "&concerne=" + pseudo
-            //url = "http://92.170.201.10/Positions/invitation/decision?b=true&demandeur=" + pseudo + "&concerne="
+            
+            //url = "http://92.170.201.10/Positions/invitation/decision?b=true&demandeur=" + nomCell.text! + "&concerne=" + pseudo
+
         }
         print(url)
-        //let url = "http://134.157.122.100:8080/Positions/utilisateur/connexion"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         InvitationService.send(request){data in
             print("Asynchronously fetched \(data!.length) bytes")
@@ -43,11 +45,12 @@ class MesInvitationsCell: UITableViewCell {
         let defaults = NSUserDefaults.standardUserDefaults()
         var url = ""
         if let pseudo = defaults.stringForKey("pseudo"){
+
             url = "http://134.157.121.10:8080/Positions/invitation/decision?b=false&demandeur=" + nomCell.text! + "&concerne=" + pseudo 
-            //url = "http://92.170.201.10/Positions/invitation/decision?b=false&demandeur=" + pseudo + "&concerne="
+
+            //url = "http://92.170.201.10/Positions/invitation/decision?b=false&demandeur=" + nomCell.text! + "&concerne=" + pseudo
         }
         print(url)
-        //let url = "http://134.157.122.100:8080/Positions/utilisateur/connexion"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         InvitationService.send(request){data in
             print("Asynchronously fetched \(data!.length) bytes")
