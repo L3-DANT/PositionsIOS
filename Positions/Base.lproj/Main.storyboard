@@ -498,8 +498,7 @@
                                             </constraints>
                                             <state key="normal" backgroundImage="AcceptIcon"/>
                                             <connections>
-                                                <action selector="accept:" destination="RKx-sq-HCu" eventType="touchUpInside" id="ArX-2a-kgH"/>
-                                                <action selector="acceptInvitation:" destination="RKx-sq-HCu" eventType="touchUpInside" id="S1r-yL-Jgv"/>
+                                                <action selector="accept:" destination="RKx-sq-HCu" eventType="touchUpInside" id="AIp-PS-jcD"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQy-aI-HZN">
@@ -510,8 +509,7 @@
                                             </constraints>
                                             <state key="normal" backgroundImage="RefusIcon"/>
                                             <connections>
-                                                <action selector="deny:" destination="RKx-sq-HCu" eventType="touchUpInside" id="RK7-SS-K0z"/>
-                                                <action selector="refuseInvitation:" destination="RKx-sq-HCu" eventType="touchUpInside" id="Ri3-4w-Veq"/>
+                                                <action selector="deby:" destination="RKx-sq-HCu" eventType="touchUpInside" id="7HW-NB-fKR"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dZ-x1-RY7">
