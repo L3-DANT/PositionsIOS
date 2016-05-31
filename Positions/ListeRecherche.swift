@@ -114,8 +114,10 @@ class ListeRecherche : UIViewController, UITableViewDelegate, UISearchBarDelegat
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as! ListeRechercheCell;
         if(searchActive){
             cell.userName.text = filtered[indexPath.row]
+            
         } else {
             cell.userName?.text = dataTable[indexPath.row]
+            
         }
         
         return cell;

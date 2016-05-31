@@ -90,7 +90,6 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
             //url = "http://134.157.121.10:8080/Positions/utilisateur/getFriends?pseudo=" + pseudo
             url = "http://92.170.201.10/Positions/utilisateur/getFriends?pseudo=" + pseudo
         }
-        print(url)
         //let url = "http://134.157.122.100:8080/Positions/utilisateur/connexion"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         AmisService.send(request){data in
@@ -108,8 +107,8 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
                         let heure = listeAmis[i]["loc"]!!["heure"] as! String
                         let local = Localisation(longitude: longitude,latitude: latitude,heure: heure,date: date)
                         let amis = Amis(pseudo: pseudo,position: local)
-                        print(pseudo + ":" + String(local.latitude) + ";" + String(local.longitude))
-                        print(amis)
+                        //print(pseudo + ":" + String(local.latitude) + ";" + String(local.longitude))
+                        //print(amis)
                         self.liste.append(amis)
                         }
                     }
@@ -117,7 +116,7 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
                     
                     
                     //print(data[i].demandeur + " " + data[i].concerne + " " + data[i].accept + " " + data[i].date )
-                    print(self.liste)
+                    //print(self.liste)
                     dispatch_async(dispatch_get_main_queue(), {
                         let defaults = NSUserDefaults.standardUserDefaults()
                         let encodedData = NSKeyedArchiver.archivedDataWithRootObject(self.liste)
@@ -157,7 +156,7 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
             for index in 0...totale{
                 let pos = liste[index]
                 let local = CLLocationCoordinate2D(latitude: Double(pos.position.latitude), longitude: Double(pos.position.longitude))
-                print(pos.pseudo + ":" + String(local.longitude) + ";" +  String(local.latitude))
+                //print(pos.pseudo + ":" + String(local.longitude) + ";" +  String(local.latitude))
                 let pin = PositionsAmis(cll: local, nom: pos.pseudo)
                 openMap.addAnnotation(pin)
             }

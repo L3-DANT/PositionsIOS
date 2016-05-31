@@ -20,10 +20,29 @@ class MesInvitations: UITableViewController {
         recupererListeInvitation()
         super.viewDidLoad()
         
-        self.table.reloadData()
         tabBarController?.tabBar.items?[1].badgeValue = String(conteur)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MesInvitations.loadList(_:)),name:"supInvitation", object:nil)
+    
+    }
+    
+    func loadList(notification: NSNotification){
+        //load data here
+        print("===============================")
+        let invita = notification.object as! Invitation
+        print("demandeur: " + invita.demandeur)
+        print("concerne: " + invita.concerne)
         
-        
+        if liste.count > 0 {
+        for i in 0...liste.count-1{
+            if liste[i].demandeur == invita.demandeur && liste[i].concerne == invita.concerne{
+                liste.removeAtIndex(i)
+            }
+        }
+        }
+        print("---------------------" + String(liste))
+        dispatch_async(dispatch_get_main_queue(), {
+            self.table.reloadData()
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,9 +72,9 @@ class MesInvitations: UITableViewController {
             if entre.demandeur != pseudo{
                 cell.nomCell.text = entre.demandeur
                 cell.dateCell.text = entre.date
+                
             }
         }
-        
         
         
         return cell
@@ -78,7 +97,8 @@ class MesInvitations: UITableViewController {
             
             do{
                 if let answer = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSArray{
-                    for(var i = 0; i<answer.count; i++){
+                    if answer.count > 0{
+                    for i in 0...answer.count-1{
                         let demandeur = answer[i]["demandeur"] as! String
                         let concerne = answer[i]["concerne"] as! String
                         let date = answer[i]["date"] as! String
@@ -93,10 +113,10 @@ class MesInvitations: UITableViewController {
                                     self.conteur = self.conteur + 1
                                 }
                             }
-
                             
                             
                         })
+                        }
                         //print(data[i].demandeur + " " + data[i].concerne + " " + data[i].accept + " " + data[i].date )
                     }
                     print(self.liste)

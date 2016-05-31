@@ -17,8 +17,31 @@ class MesAmis: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         recupererListeAmis()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MesAmis.loadList(_:)),name:"addAmis", object:nil)
         
     }
+    
+    func loadList(notification: NSNotification){
+        //load data here
+        print("===============================")
+        let invita = notification.object as! Invitation
+        print("demandeur: " + invita.demandeur)
+        print("concerne: " + invita.concerne)
+        
+        if liste.count > 0 {
+        for i in 0...liste.count-1{
+            if liste[i].pseudo == invita.demandeur {
+                let loca = Localisation(longitude:0, latitude:0, heure:"", date:"")
+                liste.append(Amis(pseudo: invita.demandeur,position: loca))
+            }
+        }
+        }
+        print("---------------------" + String(liste))
+        dispatch_async(dispatch_get_main_queue(), {
+            self.Table.reloadData()
+        })
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -43,9 +66,6 @@ class MesAmis: UITableViewController {
 
         let entre = liste[indexPath.row]
         cell.nomAmis.text = entre.pseudo
-
-        
-
         return cell
     }
     
