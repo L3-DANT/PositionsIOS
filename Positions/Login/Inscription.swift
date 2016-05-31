@@ -38,9 +38,10 @@ class Inscription: UIViewController {
         let MailString = Mail.text!
         let MdP = MotPasse.text!
         let VerifPasse = MotPasse1.text!
-        
+
         "http://92.170.201.10/Positions/utilisateur/inscription"
         let request = NSMutableURLRequest(URL: NSURL(string: "http://92.170.201.10:8080/Positions/utilisateur/inscription")!)
+
         if (VerifMotPass(MdP, MotPasse1String: VerifPasse)){
         EnregistrementUtilisateur.getDataAsynchronously(request, motPasse: MdP, mail: MailString, pseudo: PseudoString){data in
             print("Asynchronously fetched \(data!.length) bytes")

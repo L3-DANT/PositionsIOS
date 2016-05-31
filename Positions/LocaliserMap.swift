@@ -25,7 +25,7 @@ import MapKit
 class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate {
     
     var liste = [Amis]()
-    var statu:bool = true
+    var statu: bool = true
 
     @IBOutlet weak var openMap: MKMapView!
     
