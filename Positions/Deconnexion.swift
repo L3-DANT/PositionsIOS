@@ -9,10 +9,18 @@
 import Foundation
 import UIKit
 
-class Deconnexion: UIViewController{
+class Deconnexion: UINavigationController{
     
     
     override func viewDidLoad() {
+        print("deconnexion")
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.removeObjectForKey("pseudo")
+        userDefaults.removeObjectForKey("token")
+        dispatch_async(dispatch_get_main_queue(), {
+            self.performSegueWithIdentifier("afterDeconnexion", sender: self)
+        })
+        
         
     }
 }

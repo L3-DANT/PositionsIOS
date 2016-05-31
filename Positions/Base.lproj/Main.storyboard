@@ -660,12 +660,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Déconnexion" id="EKk-FS-GiT"/>
                     <connections>
-                        <segue destination="aSw-2q-UQL" kind="show" id="Qfb-Ok-K2M"/>
+                        <segue destination="aSw-2q-UQL" kind="presentation" identifier="afterDeconnexion" id="0AV-41-6wk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ITR-VQ-tyB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-255" y="1845"/>
+            <point key="canvasLocation" x="1487" y="681"/>
         </scene>
         <!--Parametre-->
         <scene sceneID="i5p-MI-X9y">
@@ -754,7 +754,7 @@
         <!--Déconnexion-->
         <scene sceneID="Yd8-Jl-pGg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="w3E-wF-wS9" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="w3E-wF-wS9" customClass="Deconnexion" customModule="Positions" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Déconnexion" image="SignOutIcon" id="5RF-9A-k2M"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jwt-gG-8j3">
@@ -787,7 +787,7 @@
         <image name="invitation" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Qfb-Ok-K2M"/>
+        <segue reference="0AV-41-6wk"/>
         <segue reference="yom-pe-hgd"/>
     </inferredMetricsTieBreakers>
 </document>

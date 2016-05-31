@@ -51,8 +51,8 @@ class ListeRecherche : UIViewController, UITableViewDelegate, UISearchBarDelegat
     {
         
         //"http://92.170.201.10/Positions/utilisateur/recherche"
-        
-        let request = NSMutableURLRequest(URL: NSURL(string: "http://134.157.122.100:8080/Positions/utilisateur/recherche?prefix="+searchText)!)
+        //http://134.157.122.100:8080/Positions/utilisateur/recherche
+        let request = NSMutableURLRequest(URL: NSURL(string: "http://92.170.201.10/Positions/utilisateur/recherche?prefix="+searchText)!)
         
             Recherche.findAsynchronously(request){data in
                 print("Asynchronously fetched \(data!.length) bytes")

@@ -46,6 +46,15 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         locationManager.startUpdatingLocation()//start
         openMap.showsUserLocation = true//affiche mon point
         /*
+        var timer = NSTimer()
+        let delay = 5000.0
+        
+        timer.invalidate()
+        timer = NSTimer.scheduledTimerWithTimeInterval(delay, target: self, selector: #selector(LocaliserMap.locationManager), userInfo: nil, repeats: true)
+        timer.invalidate()
+        */
+
+        /*
         let data = [Amis]()
         let totale = data.count-1
         print(totale)
@@ -70,7 +79,15 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         /*print(latitude)
         print(longitude)
         */
-        envoiLocation(latitude!,lo:longitude!)
+        let seconds = 5.0
+        let delay = seconds * Double(NSEC_PER_SEC)
+        let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        
+        dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+            //print("send location")
+            self.envoiLocation(latitude!,lo:longitude!)
+        })
+        
         
         /*let width = 1000.0
         let height = 1000.0
@@ -88,8 +105,10 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
     
     
     func envoiLocation(la:Double, lo:Double){
-        //"http://92.170.201.10/Positions/localisation/updateLoc"
-        let url = "http://134.157.122.100:8080/Positions/localisation/updateLoc"
+        let url = "http://92.170.201.10/Positions/localisation/updateLoc"
+        
+        
+        //let url = "http://134.157.122.100:8080/Positions/localisation/updateLoc"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         
         let session = NSURLSession.sharedSession()
