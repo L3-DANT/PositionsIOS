@@ -10,11 +10,11 @@ import UIKit
 
 class MesAmisCell: UITableViewCell {
     
-    @IBOutlet weak var titleCell: UIButton!
+    @IBOutlet weak var nomAmis: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

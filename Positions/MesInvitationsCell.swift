@@ -11,6 +11,64 @@ import UIKit
 class MesInvitationsCell: UITableViewCell {
 
     @IBOutlet weak var nomCell: UILabel!
+    @IBOutlet weak var dateCell: UILabel!
+    
+    
+    
+    @IBAction func accept(sender: AnyObject) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        var url = ""
+        if let pseudo = defaults.stringForKey("pseudo"){
+            
+            //url = "http://134.157.121.10:8080/Positions/invitation/decision?b=true&demandeur=" + nomCell.text! + "&concerne=" + pseudo
+            
+            url = "http://92.170.201.10/Positions/invitation/decision?b=true&demandeur=" + nomCell.text! + "&concerne=" + pseudo
+            
+        }
+        print(url)
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        InvitationService.send(request){data in
+            print("Asynchronously fetched \(data!.length) bytes")
+            
+            do{
+                if let answer = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary{
+                    print(answer)
+                }
+                
+            } catch let error as NSError{
+                print(error)
+            }
+            
+        }
+    }
+
+    @IBAction func deby(sender: AnyObject) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        var url = ""
+        if let pseudo = defaults.stringForKey("pseudo"){
+            
+            //url = "http://134.157.121.10:8080/Positions/invitation/decision?b=false&demandeur=" + nomCell.text! + "&concerne=" + pseudo
+            
+            url = "http://92.170.201.10/Positions/invitation/decision?b=false&demandeur=" + nomCell.text! + "&concerne=" + pseudo
+        }
+        print(url)
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        InvitationService.send(request){data in
+            print("Asynchronously fetched \(data!.length) bytes")
+            
+            do{
+                if let answer = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary{
+                    print(answer)
+                }
+                
+            } catch let error as NSError{
+                print(error)
+            }
+            
+        }
+
+    }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

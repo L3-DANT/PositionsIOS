@@ -10,15 +10,25 @@ import UIKit
 
 class MesInvitations: UITableViewController {
     
-    let data = [Invitation]()
+    var liste = [Invitation]()
+    
+    var conteur = 0
+    
+    @IBOutlet var table: UITableView!
     
     override func viewDidLoad() {
+        recupererListeInvitation()
         super.viewDidLoad()
+        
+        self.table.reloadData()
+        tabBarController?.tabBar.items?[1].badgeValue = String(conteur)
+        
         
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
     }
     
 
@@ -28,88 +38,79 @@ class MesInvitations: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return data.count
+        
+        return liste.count
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cellule", forIndexPath: indexPath) as! MesInvitationsCell
         
-        //let entre = data.donnee[indexPath.row]
+        let entre = liste[indexPath.row]
+        print(entre.concerne + ": " + entre.date)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let pseudo = defaults.stringForKey("pseudo"){
+            if entre.demandeur != pseudo{
+                cell.nomCell.text = entre.demandeur
+                cell.dateCell.text = entre.date
+            }
+        }
         
-        //cell.nomCell.text = entre.pseudo
         
         
         return cell
     }
     
-    func recupererListeInvitation(pseudo:String) -> Array<String>{
+    func recupererListeInvitation(){
+        //let url = "http://134.157.24.6:8080/Positions/invitation/recupInvits"
+        var url = ""
+        let defaults = NSUserDefaults.standardUserDefaults()
         
-        let url = "http://92.170.201.10:8080/Positions/invitation/recupInvits"
-        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        
-        let session = NSURLSession.sharedSession()
-        request.HTTPMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        let params = ["pseudo":pseudo]
-        do {
-            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
-        } catch {
-            print(error)
+        if let pseudo = defaults.stringForKey("pseudo"){
+            //url = "http://134.157.121.10:8080/Positions/invitation/recupInvits?pseudo=" + pseudo
+            url = "http://92.170.201.10/Positions/invitation/recupInvits?pseudo=" + pseudo
         }
-        
-        let res = [String]()
-        
-        
-        let task = session.dataTaskWithRequest(request) { data, response, error in
-            guard data != nil else {
-                print("no data found: \(error)")
-                return
-            }
-            let invit = Invitation()
-            do {
-                if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
-                    print(json)
-                    
-                    if let invitations = json as? [[String: AnyObject]]{
-                        for invitation in invitations{
-                            if let demandeur = invitation["demandeur"] as? String{
-                                invit.setDemandeur(demandeur)
+        print(url)
+        //let url = "http://134.157.122.100:8080/Positions/utilisateur/connexion"
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        InvitationService.send(request){data in
+            print("Asynchronously fetched \(data!.length) bytes")
+            
+            do{
+                if let answer = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSArray{
+                    for(var i = 0; i<answer.count; i++){
+                        let demandeur = answer[i]["demandeur"] as! String
+                        let concerne = answer[i]["concerne"] as! String
+                        let date = answer[i]["date"] as! String
+                        let accept = answer[i]["accept"] as! String
+                        let invit = Invitation(demandeur: demandeur, concerne: concerne, date: date, accept: accept)
+                        dispatch_async(dispatch_get_main_queue(), {
+                            
+                            let defaults = NSUserDefaults.standardUserDefaults()
+                            if let pseudo = defaults.stringForKey("pseudo"){
+                                if demandeur != pseudo{
+                                    self.liste.append(invit as Invitation!)
+                                    self.conteur = self.conteur + 1
+                                }
                             }
-                            if let concerne = invitation["concerne"] as? String{
-                                invit.setDemandeur(concerne)
-                            }
-                            if let date = invitation["date"] as? NSDate{
-                                invit.setDate(date)
-                            }
-                            if let accept = invitation["accept"] as? String{
-                                invit.setDemandeur(accept)
-                            }
-                        }
-                        
+
+                            
+                            
+                        })
+                        //print(data[i].demandeur + " " + data[i].concerne + " " + data[i].accept + " " + data[i].date )
                     }
+                    print(self.liste)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.table.reloadData()
+                    })
                 }
                 
-                /*
-                 //let success = json["success"] as? Invitation
-                 for index: [key: AnyObject, value : AnyObject] in json{
-                 let pseudo = index["pseudo"] as? String
-                 let donnee = Invitation(pseudo)
-                 }
-                 //print("Success: \(success)")
-                 } else {
-                 let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                 print("Error could not parse JSON: \(jsonStr)")
-                 }*/
-            } catch let parseError {
-                print(parseError)
-                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                print("Error could not parse JSON: '\(jsonStr)'")
+            } catch let error as NSError{
+                print(error)
             }
+            
+            
         }
-        task.resume()
-        return res
+        //print(self.data[0])
     }
 }

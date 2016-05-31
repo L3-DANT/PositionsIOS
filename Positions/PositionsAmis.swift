@@ -21,5 +21,9 @@ class PositionsAmis: NSObject, MKAnnotation{
         self.title=nom
     }
     
+    func setCoordonnee(cll: CLLocationCoordinate2D){
+        self.coordinate = cll
+    }
+    
     
 }

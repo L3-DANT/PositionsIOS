@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Localisation {
+class Localisation: NSObject, NSCoding{
     let longitude:Float
     let latitude:Float
     let heure:String
@@ -21,6 +21,21 @@ class Localisation {
         self.longitude = longitude
         self.heure = heure
         self.date = date
+    }
+    
+    required convenience init(coder aDecoder: NSCoder){
+        let long = aDecoder.decodeFloatForKey("longitude")
+        let lat = aDecoder.decodeFloatForKey("latitude")
+        let date = aDecoder.decodeObjectForKey("date") as! String
+        let heure = aDecoder.decodeObjectForKey("heure") as! String
+        self.init(longitude: long, latitude : lat, heure : heure, date: date )
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeFloat(longitude, forKey: "longitude")
+        aCoder.encodeFloat(latitude, forKey: "latitude")
+        aCoder.encodeObject(heure, forKey: "heure")
+        aCoder.encodeObject(date, forKey: "date")
     }
     
 }
