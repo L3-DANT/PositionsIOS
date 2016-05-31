@@ -411,7 +411,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellule" rowHeight="55" id="myc-nm-K6d" customClass="MesAmisCell" customModule="Positions" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="celAmis" rowHeight="55" id="myc-nm-K6d" customClass="MesAmisCell" customModule="Positions" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="414" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="myc-nm-K6d" id="RWg-9N-btT">
@@ -426,20 +426,27 @@
                                             </constraints>
                                             <state key="normal" backgroundImage="DeleteIcon"/>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6u-40-VGc">
-                                            <rect key="frame" x="8" y="0.0" width="342" height="54"/>
-                                            <state key="normal" title="Label">
-                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
-                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELO-dE-Gdm">
+                                            <rect key="frame" x="22" y="8" width="321" height="38"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="38" id="axA-tG-7YS"/>
+                                                <constraint firstAttribute="width" constant="321" id="uEa-1M-SR4"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="ELO-dE-Gdm" firstAttribute="leading" secondItem="RWg-9N-btT" secondAttribute="leadingMargin" constant="14" id="8B1-LH-cq5"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="5Vq-oE-row" secondAttribute="trailing" constant="16" id="eGK-za-uDu"/>
+                                        <constraint firstItem="5Vq-oE-row" firstAttribute="leading" secondItem="ELO-dE-Gdm" secondAttribute="trailing" constant="15" id="fCT-u2-AOm"/>
                                         <constraint firstItem="5Vq-oE-row" firstAttribute="top" secondItem="RWg-9N-btT" secondAttribute="topMargin" constant="3" id="jnY-AO-zX7"/>
+                                        <constraint firstItem="ELO-dE-Gdm" firstAttribute="top" secondItem="RWg-9N-btT" secondAttribute="topMargin" id="lu5-Wg-J2b"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="titleCell" destination="W6u-40-VGc" id="egK-qM-q5G"/>
+                                    <outlet property="nomAmis" destination="ELO-dE-Gdm" id="K12-54-NWO"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -449,6 +456,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Mes amis" id="TPj-OQ-g1F"/>
+                    <connections>
+                        <outlet property="Table" destination="4Dy-jF-Ge3" id="u9J-mH-dBW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7vF-iz-TTU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

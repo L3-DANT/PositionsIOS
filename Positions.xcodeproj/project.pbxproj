@@ -18,6 +18,7 @@
 		856BFE3D1CFC36CD0027FAB5 /* ListeRecherche.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856BFE3C1CFC36CD0027FAB5 /* ListeRecherche.swift */; };
 		856BFE3F1CFCB0760027FAB5 /* ListeRechercheCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856BFE3E1CFCB0750027FAB5 /* ListeRechercheCell.swift */; };
 		856BFE411CFD452A0027FAB5 /* InvitationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856BFE401CFD452A0027FAB5 /* InvitationService.swift */; };
+		856BFE431CFDFBCC0027FAB5 /* AmisService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856BFE421CFDFBCC0027FAB5 /* AmisService.swift */; };
 		857C94951CE09BE700BC0101 /* LocaliserMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857C94941CE09BE700BC0101 /* LocaliserMap.swift */; };
 		85D259D81CE3322F000F2D45 /* EnregistrementUtilisateur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D259D71CE3322F000F2D45 /* EnregistrementUtilisateur.swift */; };
 		85D259DC1CE36C95000F2D45 /* Connexion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D259DB1CE36C95000F2D45 /* Connexion.swift */; };
@@ -60,6 +61,7 @@
 		856BFE3C1CFC36CD0027FAB5 /* ListeRecherche.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListeRecherche.swift; sourceTree = "<group>"; };
 		856BFE3E1CFCB0750027FAB5 /* ListeRechercheCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListeRechercheCell.swift; sourceTree = "<group>"; };
 		856BFE401CFD452A0027FAB5 /* InvitationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitationService.swift; sourceTree = "<group>"; };
+		856BFE421CFDFBCC0027FAB5 /* AmisService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmisService.swift; sourceTree = "<group>"; };
 		857C94941CE09BE700BC0101 /* LocaliserMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaliserMap.swift; sourceTree = "<group>"; };
 		85D259D71CE3322F000F2D45 /* EnregistrementUtilisateur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnregistrementUtilisateur.swift; sourceTree = "<group>"; };
 		85D259DB1CE36C95000F2D45 /* Connexion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connexion.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				856BFE361CFB7C7D0027FAB5 /* PusherSub.swift */,
 				856BFE3A1CFC2EAF0027FAB5 /* Recherche.swift */,
 				856BFE401CFD452A0027FAB5 /* InvitationService.swift */,
+				856BFE421CFDFBCC0027FAB5 /* AmisService.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				85D25A201CE726EE000F2D45 /* MesAmisCell.swift in Sources */,
 				85D25A1C1CE7244D000F2D45 /* MesAmis.swift in Sources */,
 				856BFE3B1CFC2EAF0027FAB5 /* Recherche.swift in Sources */,
+				856BFE431CFDFBCC0027FAB5 /* AmisService.swift in Sources */,
 				852E25891CEB969800386815 /* testDB.swift in Sources */,
 				856A39EF1CE74A6A0095B06B /* MesInvitations.swift in Sources */,
 				85D259DC1CE36C95000F2D45 /* Connexion.swift in Sources */,
