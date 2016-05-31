@@ -10,15 +10,21 @@ import UIKit
 
 class MesInvitations: UITableViewController {
     
-    var data = [Invitation]()
+    var liste = [Invitation]()
+    
+    @IBOutlet var table: UITableView!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         recupererListeInvitation()
+        super.viewDidLoad()
+        
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
     }
     
 
@@ -29,17 +35,23 @@ class MesInvitations: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return data.count
+        return liste.count
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cellule", forIndexPath: indexPath) as! MesInvitationsCell
         
-        let entre = data[indexPath.row]
+        let entre = liste[indexPath.row]
+        print(entre.concerne + ": " + entre.date)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let pseudo = defaults.stringForKey("pseudo"){
+            if entre.demandeur != pseudo{
+                cell.nomCell.text = entre.demandeur
+                cell.dateCell.text = entre.date
+            }
+        }
         
-        cell.nomCell.text = entre.concerne
-        cell.dateCell.text = entre.date
         
         
         return cell
@@ -51,8 +63,8 @@ class MesInvitations: UITableViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         
         if let pseudo = defaults.stringForKey("pseudo"){
-            //url = "http://134.157.121.10:8080/Positions/invitation/recupInvits?pseudo=" + pseudo
-            url = "http://92.170.201.10/Positions/invitation/recupInvits?pseudo=" + pseudo
+            url = "http://134.157.121.10:8080/Positions/invitation/recupInvits?pseudo=" + pseudo
+            //url = "http://92.170.201.10/Positions/invitation/recupInvits?pseudo=" + pseudo
         }
         print(url)
         //let url = "http://134.157.122.100:8080/Positions/utilisateur/connexion"
@@ -68,10 +80,24 @@ class MesInvitations: UITableViewController {
                         let date = answer[i]["date"] as! String
                         let accept = answer[i]["accept"] as! String
                         let invit = Invitation(demandeur: demandeur, concerne: concerne, date: date, accept: accept)
-                        self.data.append(invit)
-                        print(demandeur + " " + concerne + " " + accept + " " + date )
+                        dispatch_async(dispatch_get_main_queue(), {
+                            
+                            let defaults = NSUserDefaults.standardUserDefaults()
+                            if let pseudo = defaults.stringForKey("pseudo"){
+                                if demandeur != pseudo{
+                                    self.liste.append(invit as Invitation!)
+                                }
+                            }
+
+                            
+                            
+                        })
+                        //print(data[i].demandeur + " " + data[i].concerne + " " + data[i].accept + " " + data[i].date )
                     }
-                    print(self.data)
+                    print(self.liste)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.table.reloadData()
+                    })
                 }
                 
             } catch let error as NSError{
