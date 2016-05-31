@@ -105,10 +105,10 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
     
     
     func envoiLocation(la:Double, lo:Double){
-        let url = "http://92.170.201.10/Positions/localisation/updateLoc"
+        //let url = "http://92.170.201.10/Positions/localisation/updateLoc"
         
         
-        //let url = "http://134.157.122.100:8080/Positions/localisation/updateLoc"
+        let url = "http://134.157.121.10:8080/Positions/localisation/updateLoc"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         
         let session = NSURLSession.sharedSession()

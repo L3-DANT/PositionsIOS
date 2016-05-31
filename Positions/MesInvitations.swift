@@ -18,6 +18,8 @@ class MesInvitations: UITableViewController {
         recupererListeInvitation()
         super.viewDidLoad()
         
+        self.table.reloadData()
+        
         
         
     }

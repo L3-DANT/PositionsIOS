@@ -17,7 +17,7 @@ class InvitationService{
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         //let params = ["pseudo":pseudo] as Dictionary<String, String>
-        let params = []
+        let params = ["pseudo": "test"] as Dictionary<String, String>
         do {
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
         } catch {

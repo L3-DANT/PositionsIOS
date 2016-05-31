@@ -28,7 +28,7 @@ class MesInvitationsCell: UITableViewCell {
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         InvitationService.send(request){data in
             print("Asynchronously fetched \(data!.length) bytes")
-            
+            /*
             do{
                 if let answer = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary{
                     print(answer)
@@ -37,7 +37,7 @@ class MesInvitationsCell: UITableViewCell {
             } catch let error as NSError{
                 print(error)
             }
-            
+            */
         }
         
     }

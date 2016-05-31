@@ -10,19 +10,25 @@ import Foundation
 import CoreLocation
 
 
-    class Amis{
-        let pseudo: String
-        var position : CLLocationCoordinate2D
+class Amis: NSObject, NSCoding{
+    let pseudo: String
+    var position : Localisation
         
-        init(pseudo:String,position:CLLocationCoordinate2D){
-            self.pseudo = pseudo
-            self.position = position
-        }
+    init(pseudo:String,position:Localisation){
+        self.pseudo = pseudo
+        self.position = position
     }
     
-    let donnee = [
-        Amis(pseudo:"Sebastien",position:CLLocationCoordinate2D(latitude: 48.8,longitude: 2.35)),
-        Amis(pseudo:"Lux",position:CLLocationCoordinate2D(latitude: 48.832,longitude: 2.3445)),
-        Amis(pseudo:"Maxime",position:CLLocationCoordinate2D(latitude: 48.7132,longitude: 2.13445))
-    ]
+    required convenience init(coder aDecoder: NSCoder){
+        let pseudo = aDecoder.decodeObjectForKey("pseudo") as! String
+        let position = aDecoder.decodeObjectForKey("position") as! Localisation
+        self.init(pseudo : pseudo, position: position )
+    }
     
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(pseudo, forKey: "pseudo")
+        aCoder.encodeObject(position, forKey: "position")
+    }
+}
+    
+
