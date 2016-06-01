@@ -166,6 +166,12 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
             self.envoiLocation(latitude!,lo:longitude!)
         })
         
+        let width = 1000.0
+        let height = 1000.0
+        let center = CLLocationCoordinate2D(latitude:latitude!, longitude:longitude!)
+        let region = MKCoordinateRegionMakeWithDistance(center, width, height)
+        openMap.setRegion(region, animated: true)
+        
         let totale = liste.count-1
         if totale > 0{
             for index in 0...totale{
@@ -177,11 +183,11 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
             }
         }
         
-        let width = 1000.0
+        /*let width = 1000.0
         let height = 1000.0
         let center = CLLocationCoordinate2D(latitude:latitude!, longitude:longitude!)
         let region = MKCoordinateRegionMakeWithDistance(center, width, height)
-        openMap.setRegion(region, animated: true)
+        openMap.setRegion(region, animated: true)*/
         
         //        let date = NSDate()
         //
