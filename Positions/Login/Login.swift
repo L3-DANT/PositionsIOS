@@ -27,7 +27,10 @@ class Login: UITableViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         if let token = defaults.stringForKey("token"){
             print("connexion " + token)
-        
+            dispatch_async(dispatch_get_main_queue(), {
+                self.performSegueWithIdentifier("ConnexionToMap", sender: self)
+            })
+            
         }
         passwordViewConfig()
         /*
