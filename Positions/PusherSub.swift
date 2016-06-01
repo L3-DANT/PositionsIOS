@@ -36,7 +36,12 @@ class PusherSub{
                         print(data!["loc"])
                         print(data!["loc"] as! NSDictionary)
                         print(data!["loc"]!!["latitude"])
-                        
+                        var loca = data!["loc"] as! NSDictionary
+                        var locaObject = Localisation(longitude: loca["longitude"]as! Float , latitude: loca["latitude"]as! Float , heure: loca["heure"]as! String, date: loca["date"]as! String)
+                        /*Localisation(longitude: data!["loc"]!!["longitude"] as! Float, latitude: Float(data!["loc"]!!["latitude"]) as! Float, heure: String(data!["loc"]!!["heure"]), date: String(data!["loc"]!!["date"]))*/
+                        let ps = data!["pseudo"] as! String
+                        var ami = Amis(pseudo: ps , position: locaObject)
+                        NSNotificationCenter.defaultCenter().postNotificationName("updateLoc", object: ami)
                         
                     })
                 }

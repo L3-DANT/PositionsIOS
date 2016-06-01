@@ -74,6 +74,7 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         locationManager.startUpdatingLocation()//start
         openMap.showsUserLocation = true//affiche mon point
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LocaliserMap.addPin(_:)),name:"updateLoc", object:nil)
         
         /*
         var timer = NSTimer()
@@ -86,6 +87,16 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
 
     
         
+        
+        
+    }
+    
+    func addPin(notification: NSNotification){
+        //load data here
+        let ami = notification.object as! Amis
+        print("pseudo: " + ami.pseudo)
+        print("longitude: ")
+        print(ami.position.longitude)
         
         
     }
