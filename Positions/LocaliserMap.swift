@@ -26,7 +26,22 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
     
     var liste = [Amis]()
 
+   
     @IBOutlet weak var openMap: MKMapView!
+    
+    var VerifSwitchBtn:Bool = true
+    
+    @IBAction func MySwitch(sender: UISwitch){
+        
+        if (sender.on == true) {
+            VerifSwitchBtn = true
+        }
+        if(sender.on == false){
+            VerifSwitchBtn = false
+        }
+        
+        
+    }
     
     var locationManager: CLLocationManager!
     //var cl = CLLocationCoordinate2D(latitude: 48.8,longitude: 2.35)
@@ -151,6 +166,12 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
             self.envoiLocation(latitude!,lo:longitude!)
         })
         
+        let width = 1000.0
+        let height = 1000.0
+        let center = CLLocationCoordinate2D(latitude:latitude!, longitude:longitude!)
+        let region = MKCoordinateRegionMakeWithDistance(center, width, height)
+        openMap.setRegion(region, animated: true)
+        
         let totale = liste.count-1
         if totale > 0{
             for index in 0...totale{
@@ -162,11 +183,11 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
             }
         }
         
-        let width = 1000.0
+        /*let width = 1000.0
         let height = 1000.0
         let center = CLLocationCoordinate2D(latitude:latitude!, longitude:longitude!)
         let region = MKCoordinateRegionMakeWithDistance(center, width, height)
-        openMap.setRegion(region, animated: true)
+        openMap.setRegion(region, animated: true)*/
         
         //        let date = NSDate()
         //
@@ -178,6 +199,8 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
     
     
     func envoiLocation(la:Double, lo:Double){
+        
+    if(VerifSwitchBtn){
         let url = "http://92.170.201.10/Positions/localisation/updateLoc"
         
         
@@ -225,6 +248,7 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
             }
             task.resume()
             
+        }
         }
         
         
