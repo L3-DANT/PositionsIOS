@@ -97,6 +97,22 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         print("pseudo: " + ami.pseudo)
         print("longitude: ")
         print(ami.position.longitude)
+        let deleteAnnotations = self.openMap.annotations
+        if deleteAnnotations.count > 0 {
+            for i in 0...deleteAnnotations.count-1{
+                if deleteAnnotations[i].title!! == ami.pseudo{
+                    
+                    print("annotation: " + deleteAnnotations[i].title!!)
+                    self.openMap.removeAnnotation(deleteAnnotations[i])
+                    let local = CLLocationCoordinate2D(latitude: Double(ami.position.latitude), longitude: Double(ami.position.longitude))
+                    let pin = PositionsAmis(cll: local, nom: ami.pseudo)
+                    self.openMap.addAnnotation(pin)
+                }
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), {
+            self.openMap.reloadInputViews()
+        })
         
         
     }
@@ -181,10 +197,11 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         let height = 1000.0
         let center = CLLocationCoordinate2D(latitude:latitude!, longitude:longitude!)
         let region = MKCoordinateRegionMakeWithDistance(center, width, height)
-        openMap.setRegion(region, animated: true)
+        openMap.setRegion(region, animated: false)
         
         let totale = liste.count-1
         if totale > 0{
+            
             for index in 0...totale{
                 let pos = liste[index]
                 let local = CLLocationCoordinate2D(latitude: Double(pos.position.latitude), longitude: Double(pos.position.longitude))
