@@ -26,7 +26,22 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
     
     var liste = [Amis]()
 
+   
     @IBOutlet weak var openMap: MKMapView!
+    
+    var VerifSwitchBtn:Bool = true
+    
+    @IBAction func MySwitch(sender: UISwitch){
+        
+        if (sender.on == true) {
+            VerifSwitchBtn = true
+        }
+        if(sender.on == false){
+            VerifSwitchBtn = false
+        }
+        
+        
+    }
     
     var locationManager: CLLocationManager!
     //var cl = CLLocationCoordinate2D(latitude: 48.8,longitude: 2.35)
@@ -178,6 +193,8 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
     
     
     func envoiLocation(la:Double, lo:Double){
+        
+    if(VerifSwitchBtn){
         let url = "http://92.170.201.10/Positions/localisation/updateLoc"
         
         
@@ -225,6 +242,7 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
             }
             task.resume()
             
+        }
         }
         
         
