@@ -32,7 +32,15 @@ class MesInvitationsCell: UITableViewCell {
             
             do{
                 if let answer = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary{
-                    print(answer)
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    if let pseudo = defaults.stringForKey("pseudo"){
+                        let invisup = Invitation(demandeur: self.nomCell.text!, concerne: pseudo, date: "", accept: "")
+                        NSNotificationCenter.defaultCenter().postNotificationName("supInvitation", object: invisup)
+                        NSNotificationCenter.defaultCenter().postNotificationName("addAmis", object: invisup)
+                        
+                    }
+                    
+                    
                 }
                 
             } catch let error as NSError{
@@ -42,7 +50,7 @@ class MesInvitationsCell: UITableViewCell {
         }
     }
 
-    @IBAction func deby(sender: AnyObject) {
+    @IBAction func deny(sender: AnyObject) {
         let defaults = NSUserDefaults.standardUserDefaults()
         var url = ""
         if let pseudo = defaults.stringForKey("pseudo"){
@@ -57,8 +65,14 @@ class MesInvitationsCell: UITableViewCell {
             print("Asynchronously fetched \(data!.length) bytes")
             
             do{
-                if let answer = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary{
-                    print(answer)
+                
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    if let pseudo = defaults.stringForKey("pseudo"){
+                        let invisup = Invitation(demandeur: self.nomCell.text!, concerne: pseudo, date: "", accept: "")
+                        NSNotificationCenter.defaultCenter().postNotificationName("supInvitationRefu", object: invisup)
+                        
+                
+                    
                 }
                 
             } catch let error as NSError{
@@ -68,6 +82,8 @@ class MesInvitationsCell: UITableViewCell {
         }
 
     }
+    
+    
 
     
     override func awakeFromNib() {

@@ -26,7 +26,22 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
     
     var liste = [Amis]()
 
+   
     @IBOutlet weak var openMap: MKMapView!
+    
+    var VerifSwitchBtn:Bool = true
+    
+    @IBAction func MySwitch(sender: UISwitch){
+        
+        if (sender.on == true) {
+            VerifSwitchBtn = true
+        }
+        if(sender.on == false){
+            VerifSwitchBtn = false
+        }
+        
+        
+    }
     
     var locationManager: CLLocationManager!
     //var cl = CLLocationCoordinate2D(latitude: 48.8,longitude: 2.35)
@@ -59,6 +74,7 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
         locationManager.startUpdatingLocation()//start
         openMap.showsUserLocation = true//affiche mon point
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LocaliserMap.addPin(_:)),name:"updateLoc", object:nil)
         
         /*
         var timer = NSTimer()
@@ -71,6 +87,32 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
 
     
         
+        
+        
+    }
+    
+    func addPin(notification: NSNotification){
+        //load data here
+        let ami = notification.object as! Amis
+        print("pseudo: " + ami.pseudo)
+        print("longitude: ")
+        print(ami.position.longitude)
+        let deleteAnnotations = self.openMap.annotations
+        if deleteAnnotations.count > 0 {
+            for i in 0...deleteAnnotations.count-1{
+                if deleteAnnotations[i].title!! == ami.pseudo{
+                    
+                    print("annotation: " + deleteAnnotations[i].title!!)
+                    self.openMap.removeAnnotation(deleteAnnotations[i])
+                    let local = CLLocationCoordinate2D(latitude: Double(ami.position.latitude), longitude: Double(ami.position.longitude))
+                    let pin = PositionsAmis(cll: local, nom: ami.pseudo)
+                    self.openMap.addAnnotation(pin)
+                }
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), {
+            self.openMap.reloadInputViews()
+        })
         
         
     }
@@ -90,7 +132,6 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
             //url = "http://134.157.121.10:8080/Positions/utilisateur/getFriends?pseudo=" + pseudo
             url = "http://92.170.201.10/Positions/utilisateur/getFriends?pseudo=" + pseudo
         }
-        print(url)
         //let url = "http://134.157.122.100:8080/Positions/utilisateur/connexion"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         AmisService.send(request){data in
@@ -108,8 +149,8 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
                         let heure = listeAmis[i]["loc"]!!["heure"] as! String
                         let local = Localisation(longitude: longitude,latitude: latitude,heure: heure,date: date)
                         let amis = Amis(pseudo: pseudo,position: local)
-                        print(pseudo + ":" + String(local.latitude) + ";" + String(local.longitude))
-                        print(amis)
+                        //print(pseudo + ":" + String(local.latitude) + ";" + String(local.longitude))
+                        //print(amis)
                         self.liste.append(amis)
                         }
                     }
@@ -117,7 +158,7 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
                     
                     
                     //print(data[i].demandeur + " " + data[i].concerne + " " + data[i].accept + " " + data[i].date )
-                    print(self.liste)
+                    //print(self.liste)
                     dispatch_async(dispatch_get_main_queue(), {
                         let defaults = NSUserDefaults.standardUserDefaults()
                         let encodedData = NSKeyedArchiver.archivedDataWithRootObject(self.liste)
@@ -152,12 +193,19 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
             self.envoiLocation(latitude!,lo:longitude!)
         })
         
+        let width = 1000.0
+        let height = 1000.0
+        let center = CLLocationCoordinate2D(latitude:latitude!, longitude:longitude!)
+        let region = MKCoordinateRegionMakeWithDistance(center, width, height)
+        openMap.setRegion(region, animated: false)
+        
         let totale = liste.count-1
         if totale > 0{
+            
             for index in 0...totale{
                 let pos = liste[index]
                 let local = CLLocationCoordinate2D(latitude: Double(pos.position.latitude), longitude: Double(pos.position.longitude))
-                print(pos.pseudo + ":" + String(local.longitude) + ";" +  String(local.latitude))
+                //print(pos.pseudo + ":" + String(local.longitude) + ";" +  String(local.latitude))
                 let pin = PositionsAmis(cll: local, nom: pos.pseudo)
                 openMap.addAnnotation(pin)
             }
@@ -179,6 +227,8 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
     
     
     func envoiLocation(la:Double, lo:Double){
+        
+    if(VerifSwitchBtn){
         let url = "http://92.170.201.10/Positions/localisation/updateLoc"
         
         
@@ -226,6 +276,7 @@ class LocaliserMap: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate
             }
             task.resume()
             
+        }
         }
         
         

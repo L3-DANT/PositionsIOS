@@ -12,7 +12,7 @@ class MesInvitations: UITableViewController {
     
     var liste = [Invitation]()
     
-    var conteur = 0
+    
     
     @IBOutlet var table: UITableView!
     
@@ -20,11 +20,63 @@ class MesInvitations: UITableViewController {
         recupererListeInvitation()
         super.viewDidLoad()
         
-        self.table.reloadData()
+
         tabBarController?.tabBar.items?[1].badgeValue = String(conteur)
-        
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MesInvitations.loadList(_:)),name:"supInvitation", object:nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MesInvitations.loadListRefu(_:)),name:"supInvitationRefu", object:nil)
+    
     }
+    
+    func loadList(notification: NSNotification){
+        //load data here
+        let invita = notification.object as! Invitation
+        print("demandeur: " + invita.demandeur)
+        print("concerne: " + invita.concerne)
+        
+        let accepteAlert = UIAlertController(title: "Annonce", message:
+            "L'invitation est acceptée !", preferredStyle: UIAlertControllerStyle.Alert)
+        accepteAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
+        self.presentViewController(accepteAlert, animated: true, completion: nil)
+        
+
+        if liste.count > 0 {
+        for i in 0...liste.count-1{
+            if liste[i].demandeur == invita.demandeur && liste[i].concerne == invita.concerne{
+                liste.removeAtIndex(i)
+            }
+        }
+        }
+        dispatch_async(dispatch_get_main_queue(), {
+            self.table.reloadData()
+        })
+    }
+    
+    func loadListRefu(notification: NSNotification){
+        //load data here
+        let invita = notification.object as! Invitation
+        print("demandeur: " + invita.demandeur)
+        print("concerne: " + invita.concerne)
+        
+        let refuAlert = UIAlertController(title: "Annonce", message:
+            "L'invitation est refusée !", preferredStyle: UIAlertControllerStyle.Alert)
+        refuAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
+        self.presentViewController(refuAlert, animated: true, completion: nil)
+        
+        
+        if liste.count > 0 {
+            for i in 0...liste.count-1{
+                if liste[i].demandeur == invita.demandeur && liste[i].concerne == invita.concerne{
+                    liste.removeAtIndex(i)
+                }
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), {
+            self.table.reloadData()
+        })
+    }
+
+    
+    var conteur = 0
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -53,9 +105,9 @@ class MesInvitations: UITableViewController {
             if entre.demandeur != pseudo{
                 cell.nomCell.text = entre.demandeur
                 cell.dateCell.text = entre.date
+                
             }
         }
-        
         
         
         return cell
@@ -78,7 +130,8 @@ class MesInvitations: UITableViewController {
             
             do{
                 if let answer = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSArray{
-                    for(var i = 0; i<answer.count; i++){
+                    if answer.count > 0{
+                    for i in 0...answer.count-1{
                         let demandeur = answer[i]["demandeur"] as! String
                         let concerne = answer[i]["concerne"] as! String
                         let date = answer[i]["date"] as! String
@@ -91,26 +144,31 @@ class MesInvitations: UITableViewController {
                                 if demandeur != pseudo{
                                     self.liste.append(invit as Invitation!)
                                     self.conteur = self.conteur + 1
+                                    print("Affffffiche : ", self.conteur)
+                                    self.tabBarController?.tabBar.items?[1].badgeValue = String(self.conteur)
                                 }
                             }
-
                             
                             
                         })
+                        }
                         //print(data[i].demandeur + " " + data[i].concerne + " " + data[i].accept + " " + data[i].date )
                     }
+                    
                     print(self.liste)
                     dispatch_async(dispatch_get_main_queue(), {
                         self.table.reloadData()
                     })
                 }
-                
+               
             } catch let error as NSError{
                 print(error)
             }
             
-            
+           
+
         }
+        
         //print(self.data[0])
     }
 }

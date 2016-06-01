@@ -30,6 +30,7 @@ class ListeRechercheCell: UITableViewCell{
             do{
                 if let answer = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary{
                     print(answer)
+                    
                 }
                 
             } catch let error as NSError{

@@ -274,6 +274,9 @@
                             <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="3nX-pK-kiw">
                                 <rect key="frame" x="345" y="6" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="MySwitch:" destination="fr4-yP-Py3" eventType="valueChanged" id="rMa-7F-69d"/>
+                                </connections>
                             </switch>
                         </barButtonItem>
                     </navigationItem>
@@ -418,14 +421,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="54"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Vq-oE-row">
-                                            <rect key="frame" x="358" y="11" width="32" height="32"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="32" id="R18-ov-SmR"/>
-                                                <constraint firstAttribute="width" constant="32" id="xi1-O7-XbG"/>
-                                            </constraints>
-                                            <state key="normal" backgroundImage="DeleteIcon"/>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELO-dE-Gdm">
                                             <rect key="frame" x="22" y="8" width="321" height="38"/>
                                             <constraints>
@@ -439,9 +434,6 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="ELO-dE-Gdm" firstAttribute="leading" secondItem="RWg-9N-btT" secondAttribute="leadingMargin" constant="14" id="8B1-LH-cq5"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="5Vq-oE-row" secondAttribute="trailing" constant="16" id="eGK-za-uDu"/>
-                                        <constraint firstItem="5Vq-oE-row" firstAttribute="leading" secondItem="ELO-dE-Gdm" secondAttribute="trailing" constant="15" id="fCT-u2-AOm"/>
-                                        <constraint firstItem="5Vq-oE-row" firstAttribute="top" secondItem="RWg-9N-btT" secondAttribute="topMargin" constant="3" id="jnY-AO-zX7"/>
                                         <constraint firstItem="ELO-dE-Gdm" firstAttribute="top" secondItem="RWg-9N-btT" secondAttribute="topMargin" id="lu5-Wg-J2b"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -509,7 +501,7 @@
                                             </constraints>
                                             <state key="normal" backgroundImage="RefusIcon"/>
                                             <connections>
-                                                <action selector="deby:" destination="RKx-sq-HCu" eventType="touchUpInside" id="7HW-NB-fKR"/>
+                                                <action selector="deny:" destination="RKx-sq-HCu" eventType="touchUpInside" id="OA0-lZ-jrw"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dZ-x1-RY7">
@@ -649,7 +641,6 @@
                     <connections>
                         <segue destination="RA3-dg-91L" kind="relationship" relationship="viewControllers" id="dXe-92-ev8"/>
                         <segue destination="Gk1-VO-ZAK" kind="relationship" relationship="viewControllers" id="JQr-up-s6B"/>
-                        <segue destination="hli-cn-K5k" kind="relationship" relationship="viewControllers" id="OPl-9n-d77"/>
                         <segue destination="w3E-wF-wS9" kind="relationship" relationship="viewControllers" id="Qwb-GZ-Ebq"/>
                     </connections>
                 </tabBarController>
@@ -666,7 +657,7 @@
                         <viewControllerLayoutGuide type="bottom" id="9vg-0C-ody"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="PiT-xj-HCo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Parametre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twe-Qd-mnz">
@@ -722,25 +713,6 @@
             </objects>
             <point key="canvasLocation" x="1210" y="2272"/>
         </scene>
-        <!--Paramètre-->
-        <scene sceneID="TEb-0U-UrS">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hli-cn-K5k" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Paramètre" image="ParametreIcon" id="U5h-mW-yyp"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EGT-jF-WVb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="8PS-KN-cnX" kind="relationship" relationship="rootViewController" id="Q6A-Zc-vg1"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Yeb-e4-DJT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1117" y="3256"/>
-        </scene>
         <!--Déconnexion-->
         <scene sceneID="Yd8-Jl-pGg">
             <objects>
@@ -765,11 +737,9 @@
         <image name="AcceptIcon" width="32" height="32"/>
         <image name="AddIcon" width="32" height="32"/>
         <image name="ContactIcon" width="64" height="64"/>
-        <image name="DeleteIcon" width="32" height="32"/>
         <image name="EyeCloseIcon" width="32" height="32"/>
         <image name="InvitationIcon" width="64" height="64"/>
         <image name="MenuIcon" width="64" height="64"/>
-        <image name="ParametreIcon" width="64" height="64"/>
         <image name="PasswordIcon" width="24" height="24"/>
         <image name="RefusIcon" width="32" height="32"/>
         <image name="SignOutIcon" width="64" height="64"/>
