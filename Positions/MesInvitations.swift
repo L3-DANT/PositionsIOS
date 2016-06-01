@@ -23,6 +23,7 @@ class MesInvitations: UITableViewController {
 
         tabBarController?.tabBar.items?[1].badgeValue = String(conteur)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MesInvitations.loadList(_:)),name:"supInvitation", object:nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MesInvitations.loadListRefu(_:)),name:"supInvitationRefu", object:nil)
     
     }
     
@@ -31,8 +32,11 @@ class MesInvitations: UITableViewController {
         let invita = notification.object as! Invitation
         print("demandeur: " + invita.demandeur)
         print("concerne: " + invita.concerne)
-
-        self.table.reloadData()
+        
+        let accepteAlert = UIAlertController(title: "Annonce", message:
+            "L'invitation est acceptée !", preferredStyle: UIAlertControllerStyle.Alert)
+        accepteAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
+        self.presentViewController(accepteAlert, animated: true, completion: nil)
         
 
         if liste.count > 0 {
@@ -46,6 +50,31 @@ class MesInvitations: UITableViewController {
             self.table.reloadData()
         })
     }
+    
+    func loadListRefu(notification: NSNotification){
+        //load data here
+        let invita = notification.object as! Invitation
+        print("demandeur: " + invita.demandeur)
+        print("concerne: " + invita.concerne)
+        
+        let refuAlert = UIAlertController(title: "Annonce", message:
+            "L'invitation est refusée !", preferredStyle: UIAlertControllerStyle.Alert)
+        refuAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
+        self.presentViewController(refuAlert, animated: true, completion: nil)
+        
+        
+        if liste.count > 0 {
+            for i in 0...liste.count-1{
+                if liste[i].demandeur == invita.demandeur && liste[i].concerne == invita.concerne{
+                    liste.removeAtIndex(i)
+                }
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), {
+            self.table.reloadData()
+        })
+    }
+
     
     var conteur = 0
     

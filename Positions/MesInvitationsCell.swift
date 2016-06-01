@@ -69,7 +69,7 @@ class MesInvitationsCell: UITableViewCell {
                     let defaults = NSUserDefaults.standardUserDefaults()
                     if let pseudo = defaults.stringForKey("pseudo"){
                         let invisup = Invitation(demandeur: self.nomCell.text!, concerne: pseudo, date: "", accept: "")
-                        NSNotificationCenter.defaultCenter().postNotificationName("supInvitation", object: invisup)
+                        NSNotificationCenter.defaultCenter().postNotificationName("supInvitationRefu", object: invisup)
                         
                 
                     
